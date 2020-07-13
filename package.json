@@ -1,0 +1,21 @@
+{
+  "name": "hyperfy-ecs",
+  "version": "0.0.4",
+  "main": "dist/hyperfy-ecs.js",
+  "scripts": {
+    "start": "webpack --watch",
+    "test": "jest",
+    "build": "NODE_ENV=production webpack"
+  },
+  "devDependencies": {
+    "@babel/core": "^7.8.3",
+    "@babel/plugin-proposal-class-properties": "^7.8.3",
+    "@babel/preset-env": "^7.8.3",
+    "babel-jest": "^26.1.0",
+    "babel-loader": "^8.0.6",
+    "clean-webpack-plugin": "^3.0.0",
+    "jest": "^26.1.0",
+    "webpack": "^4.41.5",
+    "webpack-cli": "^3.3.10"
+  }
+}
