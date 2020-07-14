@@ -1,4 +1,4 @@
-import { World, System, Component, Not, Modified } from '../'
+import { World, System, Component, Not, Modified } from '../src'
 
 class Transform extends Component {}
 

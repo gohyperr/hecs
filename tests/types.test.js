@@ -1,4 +1,4 @@
-import { World, Component, Types } from '../'
+import { World, Component, Types } from '../src'
 
 const tomorrow = new Date()
 tomorrow.setDate(tomorrow.getDate() + 1)

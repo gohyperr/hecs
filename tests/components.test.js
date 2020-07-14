@@ -1,4 +1,4 @@
-import { World, System, Component, StateComponent, Not, Modified } from '../'
+import { World, System, Component, StateComponent, Not, Modified } from '../src'
 
 class Model extends Component {}
 
