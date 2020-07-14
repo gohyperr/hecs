@@ -31,11 +31,11 @@ export class SystemManager {
     return this.systemsByName[name]
   }
 
-  update() {
+  update(delta) {
     for (let i = 0; i < this.systems.length; i++) {
       this.tick++
       const system = this.systems[i]
-      if (system.active) system.update()
+      if (system.active) system.update(delta)
     }
   }
 

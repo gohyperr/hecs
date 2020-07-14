@@ -15,9 +15,9 @@ export class World {
     this.components = new ComponentManager(this)
   }
 
-  update() {
+  update(delta) {
     this.version++
-    this.systems.update()
+    this.systems.update(delta)
   }
 
   reset() {
