@@ -24,4 +24,10 @@ export class EntityManager {
   onEntityInactive(entity) {
     this.entities.delete(entity.id)
   }
+
+  reset() {
+    this.entities.forEach(entity => {
+      entity.destroy()
+    })
+  }
 }

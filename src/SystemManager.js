@@ -18,6 +18,7 @@ export class SystemManager {
       this.Systems.set(System, system)
       this.systems.push(system)
       this.systemsByName[System.name] = system
+      system.init()
     })
     return this
   }
@@ -36,5 +37,11 @@ export class SystemManager {
       const system = this.systems[i]
       if (system.active) system.update()
     }
+  }
+
+  reset() {
+    this.systems.forEach(system => {
+      system.reset()
+    })
   }
 }

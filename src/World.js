@@ -19,4 +19,10 @@ export class World {
     this.version++
     this.systems.update()
   }
+
+  reset() {
+    this.entities.reset()
+    this.update()
+    this.systems.reset()
+  }
 }

@@ -8,5 +8,7 @@ export class System {
       this.queries[queryName] = this.world.queries.create(Components)
     }
   }
+  init() {}
   update() {}
+  reset() {}
 }
