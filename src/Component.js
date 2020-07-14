@@ -37,7 +37,9 @@ export class Component {
     for (const key in this.constructor.props) {
       const prop = this.constructor.props[key]
       const type = prop.type || prop
-      this[key] = type.fromJSON(data[key], this[key])
+      if (data[key] !== undefined) {
+        this[key] = type.fromJSON(data[key], this[key])
+      }
     }
     return this
   }
