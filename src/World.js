@@ -6,6 +6,7 @@ import { ComponentManager } from './ComponentManager'
 
 export class World {
   constructor(options = {}) {
+    this.id = options.id || 0
     this.version = 0
     this.systems = new SystemManager(this)
     this.queries = new QueryManager(this)

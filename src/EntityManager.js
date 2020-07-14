@@ -8,7 +8,7 @@ export class EntityManager {
   }
 
   create(name, id) {
-    if (!id) id = this.lastEntityId++
+    if (!id) id = `${this.world.id}:${this.lastEntityId++}`
     const entity = new Entity(this.world, name, id)
     return entity
   }
