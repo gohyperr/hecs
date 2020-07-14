@@ -12,7 +12,7 @@ export class Entity {
     this.active = false
   }
 
-  add(Component, values) {
+  add(Component, values, ret) {
     let component
     if (!Component.isComponent) {
       component = Component
@@ -26,7 +26,7 @@ export class Entity {
       this.Components.push(Component)
       this.world.archetypes.onEntityComponentChange(this, Component, true)
     }
-    return this
+    return ret ? component : this
   }
 
   get(Component) {
