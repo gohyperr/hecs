@@ -1,6 +1,6 @@
 {
   "name": "hyperfy-ecs",
-  "version": "0.0.7",
+  "version": "0.0.8",
   "main": "dist/hyperfy-ecs.js",
   "scripts": {
     "start": "webpack --watch",
