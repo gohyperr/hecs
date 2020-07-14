@@ -33,6 +33,14 @@ export class Query {
   }
 
   forEach(callback) {
+    if (this.Modified.length) {
+      this._forEachModified(callback)
+    } else {
+      this._forEach(callback)
+    }
+  }
+
+  _forEachModified(callback) {
     for (let a = 0; a < this.archetypes.length; a++) {
       const entities = this.archetypes[a].entities
 
@@ -40,12 +48,20 @@ export class Query {
       // it during iteration it continues to run
       for (let e = entities.length - 1; e >= 0; --e) {
         const entity = entities[e]
+        if (this.isModified(entity)) callback(entity)
+      }
+    }
+  }
 
-        if (this.Modified.length) {
-          if (this.isModified(entity)) callback(entity)
-        } else {
-          callback(entity)
-        }
+  _forEach(callback) {
+    for (let a = 0; a < this.archetypes.length; a++) {
+      const entities = this.archetypes[a].entities
+
+      // array is iterated in reverse so that if an entity is removed from
+      // it during iteration it continues to run
+      for (let e = entities.length - 1; e >= 0; --e) {
+        const entity = entities[e]
+        callback(entity)
       }
     }
   }
