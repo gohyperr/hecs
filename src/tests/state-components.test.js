@@ -12,17 +12,15 @@ class ModelSystem extends System {
   }
 
   update() {
-    this.added = 0
-    this.active = 0
-    this.removed = 0
+    this.counts = { added: 0, active: 0, removed: 0 }
     this.queries.added.forEach(entity => {
       entity.add(ModelMesh)
-      this.added++
+      this.counts.added++
     })
-    this.queries.active.forEach(() => this.active++)
+    this.queries.active.forEach(() => this.counts.active++)
     this.queries.removed.forEach(entity => {
       entity.remove(ModelMesh)
-      this.removed++
+      this.counts.removed++
     })
   }
 }
@@ -37,21 +35,21 @@ describe('state components', () => {
 
   test('initial update', () => {
     world.update()
-    expect(system.added).toBe(0)
-    expect(system.active).toBe(0)
-    expect(system.removed).toBe(0)
+    expect(system.counts.added).toBe(0)
+    expect(system.counts.active).toBe(0)
+    expect(system.counts.removed).toBe(0)
   })
 
   test('add model', () => {
     block.add(Model)
     world.update()
-    expect(system.added).toBe(1)
-    expect(system.active).toBe(1)
-    expect(system.removed).toBe(0)
+    expect(system.counts.added).toBe(1)
+    expect(system.counts.active).toBe(1)
+    expect(system.counts.removed).toBe(0)
     world.update()
-    expect(system.added).toBe(0)
-    expect(system.active).toBe(1)
-    expect(system.removed).toBe(0)
+    expect(system.counts.added).toBe(0)
+    expect(system.counts.active).toBe(1)
+    expect(system.counts.removed).toBe(0)
   })
 
   test('deactivate entity', () => {
@@ -65,18 +63,18 @@ describe('state components', () => {
     expect(block.active).toBe(true)
     world.update()
     expect(block.active).toBe(false)
-    expect(system.added).toBe(0)
-    expect(system.active).toBe(0)
-    expect(system.removed).toBe(1)
+    expect(system.counts.added).toBe(0)
+    expect(system.counts.active).toBe(0)
+    expect(system.counts.removed).toBe(1)
   })
 
   test('re-activate entity', () => {
     block.activate()
     expect(block.active).toBe(true)
     world.update()
-    expect(system.added).toBe(1)
-    expect(system.active).toBe(1)
-    expect(system.removed).toBe(0)
+    expect(system.counts.added).toBe(1)
+    expect(system.counts.active).toBe(1)
+    expect(system.counts.removed).toBe(0)
   })
 
   test('destroy entity', () => {
@@ -84,8 +82,8 @@ describe('state components', () => {
     expect(block.active).toBe(true)
     world.update()
     expect(block.active).toBe(false)
-    expect(system.added).toBe(0)
-    expect(system.active).toBe(0)
-    expect(system.removed).toBe(1)
+    expect(system.counts.added).toBe(0)
+    expect(system.counts.active).toBe(0)
+    expect(system.counts.removed).toBe(1)
   })
 })

@@ -28,7 +28,7 @@ export class SystemManager {
     for (let i = 0; i < this.systems.length; i++) {
       this.tick++
       const system = this.systems[i]
-      system?.update()
+      if (system.active) system.update()
     }
   }
 }
