@@ -6,30 +6,37 @@ export class Component {
     this.name = this.constructor.name
     this.props = []
     this.modifiedUntilSystemTick = 0
-    for (const propName in this.constructor.props) {
-      let prop = this.constructor.props[propName]
-      if (!prop.type) prop = { type: prop }
-      prop.name = propName
-      let value = values[prop.name]
-      if (value === undefined) value = prop.default
-      this[prop.name] = prop.type.initial(value)
+
+    for (const key in this.constructor.props) {
+      let prop = this.constructor.props[key]
+      const value = values[key]
+
+      // rewrite shorthand to expanded first time
+      if (!prop.type) {
+        prop = { type: prop }
+        this.constructor.props[key] = prop
+      }
+
+      this[key] = prop.type.initial(value === undefined ? prop.default : value)
       this.props.push(prop)
     }
   }
 
   toJSON() {
     const data = {}
-    for (let i = 0; i < this.props.length; i++) {
-      const { type, name } = this.props[i]
-      data[name] = type.toJSON(this[name])
+    for (const key in this.constructor.props) {
+      const prop = this.constructor.props[key]
+      const type = prop.type || prop
+      data[key] = type.toJSON(this[key])
     }
     return data
   }
 
   fromJSON(data) {
-    for (let i = 0; i < this.props.length; i++) {
-      const { type, name } = this.props[i]
-      this[name] = type.fromJSON(data[name], this[name])
+    for (const key in this.constructor.props) {
+      const prop = this.constructor.props[key]
+      const type = prop.type || prop
+      this[key] = type.fromJSON(data[key], this[key])
     }
     return this
   }
