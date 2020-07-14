@@ -3,6 +3,7 @@ export class SystemManager {
     this.world = world
     this.Systems = new Map()
     this.systems = []
+    this.systemsByName = {}
     this.tick = 0
   }
 
@@ -16,12 +17,17 @@ export class SystemManager {
       const system = new System(this.world)
       this.Systems.set(System, system)
       this.systems.push(system)
+      this.systemsByName[System.name] = system
     })
     return this
   }
 
   get(System) {
     return this.Systems.get(System)
+  }
+
+  getByName(name) {
+    return this.systemsByName[name]
   }
 
   update() {
