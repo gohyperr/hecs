@@ -13,8 +13,14 @@ export class Entity {
   }
 
   add(Component, values) {
+    let component
+    if (!Component.isComponent) {
+      component = Component
+      Component = Component.constructor
+    } else {
+      component = new Component(this.world, values)
+    }
     const replacing = this.components.has(Component)
-    const component = new Component(this.world, values)
     this.components.set(Component, component)
     if (!replacing) {
       this.Components.push(Component)

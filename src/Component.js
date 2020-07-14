@@ -1,5 +1,6 @@
 export class Component {
   static props = {}
+  static isComponent = true
 
   constructor(world, values = {}) {
     this.world = world
