@@ -13,6 +13,10 @@ export class EntityManager {
     return entity
   }
 
+  getById(id) {
+    return this.entities.get(id)
+  }
+
   onEntityActive(entity) {
     this.entities.set(entity.id, entity)
   }
