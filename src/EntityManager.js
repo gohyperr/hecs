@@ -4,11 +4,11 @@ export class EntityManager {
   constructor(world) {
     this.world = world
     this.entities = new Map()
-    this.lastEntityId = 0
+    this.nextEntityId = 0
   }
 
   create(name, id) {
-    if (!id) id = `${this.world.id}:${this.lastEntityId++}`
+    if (!id) id = `${this.world.id}:${this.nextEntityId++}`
     const entity = new Entity(this.world, name, id)
     return entity
   }
