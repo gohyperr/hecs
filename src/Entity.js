@@ -1,3 +1,4 @@
+import { Component } from './Component'
 import { StateComponent } from './StateComponent'
 
 export class Entity {
@@ -132,7 +133,9 @@ export class Entity {
       name: this.name,
     }
     this.components.forEach(component => {
-      data[component.name] = component.toJSON()
+      if (component.constructor.__proto__ === Component) {
+        data[component.name] = component.toJSON()
+      }
     })
     return data
   }
@@ -143,9 +146,7 @@ export class Entity {
     for (const key in data) {
       if (key === 'id' || key === 'name') continue
       const Component = this.world.components.getByName(key)
-      this.add(Component)
-      const component = this.get(Component)
-      component.fromJSON(data[key])
+      this.add(Component, undefined, true).fromJSON(data[key])
     }
     return this
   }
