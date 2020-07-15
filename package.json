@@ -1,11 +1,12 @@
 {
   "name": "hyperfy-ecs",
-  "version": "0.0.9",
+  "version": "0.0.10",
   "main": "dist/hyperfy-ecs.js",
   "scripts": {
     "start": "webpack --watch",
     "test": "jest",
-    "build": "NODE_ENV=production webpack"
+    "build": "NODE_ENV=production webpack",
+    "prepublish": "yarn build"
   },
   "devDependencies": {
     "@babel/core": "^7.8.3",
