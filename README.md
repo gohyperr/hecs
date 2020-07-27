@@ -1,4 +1,4 @@
-# Hyperfy ECS
+# Hyperr ECS
 
 A high performance ECS framework for the web.
 
@@ -7,7 +7,7 @@ See [TECHNICAL.md](TECHNICAL.md) for details on performance and the internals of
 ## Quickstart
 
 ```js
-import { World, System, Component, StateComponent, Types, Not, Modified } from 'hyperfy-ecs'
+import { World, System, Component, StateComponent, Types, Not, Modified } from 'hyperr-ecs'
 import { Object3D } from './types'
 
 class Model extends Component {
@@ -67,7 +67,7 @@ update()
 ### Creating a world
 
 ```js
-import { World } from 'hyperfy-ecs'
+import { World } from 'hyperr-ecs'
 
 const world = new World()
 ```
@@ -148,7 +148,7 @@ basketball.destroy()
 ### Defining components
 
 ```js
-import { Component, Types } from 'hyperfy-ecs'
+import { Component, Types } from 'hyperr-ecs'
 
 export class Model extends Component {
   static props = {
@@ -172,7 +172,7 @@ an entity is deactivated or destroyed so that Systems can process or deallocate
 resources.
 
 ```js
-import { StateComponent } from 'hyperfy-ecs'
+import { StateComponent } from 'hyperr-ecs'
 import { Object3D } from './types'
 
 export class Mesh extends StateComponent {
@@ -187,7 +187,7 @@ export class Mesh extends StateComponent {
 ### Defining systems
 
 ```js
-import { System, Not, Changed } from 'hyperfy-ecs'
+import { System, Not, Changed } from 'hyperr-ecs'
 import { Mesh } from './components'
 
 export class ModelSystem extends System {

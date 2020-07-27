@@ -1,7 +1,7 @@
 {
-  "name": "hyperfy-ecs",
+  "name": "hyperr-ecs",
   "version": "0.0.11",
-  "main": "dist/hyperfy-ecs.js",
+  "main": "dist/hyperr-ecs.js",
   "scripts": {
     "start": "webpack --watch",
     "test": "jest",
