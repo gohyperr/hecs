@@ -41,7 +41,11 @@ export class Query {
   }
 
   _forEachModified(callback) {
-    for (let a = 0; a < this.archetypes.length; a++) {
+    // archetypes are iterated in reverse to exclude any newly
+    // spawned archetypes created during the current loop.
+    // this also protects against an entity having callback() called more
+    // than once due to his archetype changing to the newly spawned archetype.
+    for (let a = this.archetypes.length - 1; a >= 0; --a) {
       const entities = this.archetypes[a].entities
 
       // array is iterated in reverse so that if an entity is removed from
@@ -54,7 +58,9 @@ export class Query {
   }
 
   _forEach(callback) {
-    for (let a = 0; a < this.archetypes.length; a++) {
+    // archetypes are iterated in reverse to exclude any newly
+    // spawned archetypes created during the current loop.
+    for (let a = this.archetypes.length - 1; a >= 0; --a) {
       const entities = this.archetypes[a].entities
 
       // array is iterated in reverse so that if an entity is removed from
