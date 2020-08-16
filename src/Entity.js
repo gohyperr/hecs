@@ -2,11 +2,11 @@ import { Component } from './Component'
 import { StateComponent } from './StateComponent'
 
 export class Entity {
-  constructor(world, name, id, pos) {
+  constructor(world, name, id, meta) {
     this.world = world
     this.id = id
     this.name = name || null
-    this.pos = pos || 0
+    this.meta = meta || {}
     this.Components = []
     this.components = new Map()
     this.inactiveComponents = []
@@ -136,7 +136,7 @@ export class Entity {
     const data = {
       id: this.id,
       name: this.name,
-      pos: this.pos,
+      meta: this.meta,
     }
     this.components.forEach(component => {
       if (component.constructor.__proto__ === Component) {
@@ -149,9 +149,9 @@ export class Entity {
   fromJSON(data) {
     this.id = data.id
     this.name = data.name
-    this.pos = data.pos
+    this.meta = data.meta
     for (const key in data) {
-      if (key === 'id' || key === 'name' || key === 'pos') continue
+      if (key === 'id' || key === 'name' || key === 'meta') continue
       const Component = this.world.components.getByName(key)
       this.add(Component, undefined, true).fromJSON(data[key])
     }
