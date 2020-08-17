@@ -30,4 +30,22 @@ export class World {
     this.update()
     this.systems.reset()
   }
+
+  toJSON() {
+    const data = {
+      nextEntityId: this.entities.nextEntityId,
+      entities: [],
+    }
+    this.entities.entities.forEach(entity =>
+      data.entities.push(entity.toJSON())
+    )
+    return data
+  }
+
+  fromJSON(data) {
+    this.entities.nextEntityId = data.nextEntityId
+    data.entities.forEach(entity => {
+      this.entities.create(entity.name, entity.id).fromJSON(entity).activate()
+    })
+  }
 }
