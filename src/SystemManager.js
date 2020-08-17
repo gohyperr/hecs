@@ -7,19 +7,22 @@ export class SystemManager {
     this.tick = 0
   }
 
-  register(Systems) {
-    if (!Array.isArray(Systems)) Systems = [Systems]
-    Systems.forEach(System => {
-      if (this.Systems.has(System)) {
-        console.warn('SystemManager: system already registered')
-        return
-      }
-      const system = new System(this.world)
-      this.Systems.set(System, system)
-      this.systems.push(system)
-      this.systemsByName[System.name] = system
-      system.init()
-    })
+  register(System, order = 0) {
+    if (this.Systems.has(System)) {
+      console.warn('ECS: system already registered')
+      return
+    }
+    const system = new System(this.world, order)
+    this.Systems.set(System, system)
+    let position = 0
+    for (let i = 0; i < this.systems.length; i++) {
+      const other = this.systems[i]
+      if (other.order > system.order) break
+      position = i
+    }
+    this.systems.splice(position + 1, 0, system)
+    this.systemsByName[System.name] = system
+    system.init()
     return this
   }
 

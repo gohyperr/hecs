@@ -1,6 +1,7 @@
 export class System {
-  constructor(world) {
+  constructor(world, order) {
     this.world = world
+    this.order = order
     this.queries = {}
     this.active = true
     for (const queryName in this.constructor.queries) {
