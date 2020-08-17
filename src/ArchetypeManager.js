@@ -1,10 +1,10 @@
 import { Archetype } from './Archetype'
 
 export class ArchetypeManager {
-  constructor(world, numComponents = 32) {
+  constructor(world, idSize) {
     this.world = world
     this.archetypes = {}
-    this.initialId = this.createInitialId(numComponents)
+    this.initialId = this.createInitialId(idSize)
     this.createArchetype(this.initialId, [])
   }
 

@@ -9,7 +9,7 @@ The ID of each archetype is a fixed length String and each character in the stri
 By default the length of these ID's are 32 which means each world can support up to 32 components. The size of the ID can be changed by specifying the amount of components you have up front and can potentially work with hundreds of components:
 
 ```js
-const world = new World({ numComponents: 100 })
+const world = new World({ idSize: 200 })
 ```
 
 ID's are used like this because they allow the world to perform extremely efficient archetype swaps whenever entity components change. For example, when an entity has a component removed we can easily swap the corresponding ID character for that component from `1` to `0` and we now know the id of the new archetype. Then all that needs to happen is the entity is moved from one archetype array to another. Blazing!

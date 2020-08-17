@@ -5,12 +5,12 @@ import { EntityManager } from './EntityManager'
 import { ComponentManager } from './ComponentManager'
 
 export class World {
-  constructor(options = {}) {
-    this.id = options.id || 0
+  constructor({ idSize = 64 }) {
+    this.id = 0
     this.version = 0
     this.systems = new SystemManager(this)
     this.queries = new QueryManager(this)
-    this.archetypes = new ArchetypeManager(this, options.numComponents)
+    this.archetypes = new ArchetypeManager(this, idSize)
     this.entities = new EntityManager(this)
     this.components = new ComponentManager(this)
   }
