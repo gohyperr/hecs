@@ -15,6 +15,11 @@ export class World {
     this.components = new ComponentManager(this)
   }
 
+  addPlugin(plugin) {
+    plugin(this)
+    return this
+  }
+
   update(delta) {
     this.version++
     this.systems.update(delta)
