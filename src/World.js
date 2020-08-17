@@ -5,7 +5,7 @@ import { EntityManager } from './EntityManager'
 import { ComponentManager } from './ComponentManager'
 
 export class World {
-  constructor({ idSize = 64 }) {
+  constructor({ idSize = 64 } = {}) {
     this.id = 0
     this.version = 0
     this.systems = new SystemManager(this)
