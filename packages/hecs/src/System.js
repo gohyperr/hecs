@@ -1,7 +1,9 @@
+import { Groups } from './Groups'
+
 export class System {
-  constructor(world, order) {
+  order = Groups.Simulation
+  constructor(world) {
     this.world = world
-    this.order = order
     this.queries = {}
     this.active = true
     for (const queryName in this.constructor.queries) {
