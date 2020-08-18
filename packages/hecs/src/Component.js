@@ -47,7 +47,7 @@ export class Component {
   modified() {
     /**
      * When a component is marked as changed it will show up
-     * in Changed() queries for one cycle starting from the current
+     * in Modified() queries for one cycle starting from the current
      * system it was changed in and ending in the system that runs
      * before it. See `Query.js` for how change detection is checked
      **/

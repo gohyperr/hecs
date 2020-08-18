@@ -15,7 +15,6 @@ export class ArchetypeManager {
       idSize--
     }
     console.log(`ECS: archetype id size is ${this.world.components.count}`)
-    console.log('ddd', this.initialId)
     this.createArchetype(this.initialId, [])
   }
 

@@ -2,6 +2,7 @@ import { Groups } from './Groups'
 
 export class System {
   order = Groups.Simulation
+
   constructor(world) {
     this.world = world
     this.queries = {}
@@ -11,7 +12,10 @@ export class System {
       this.queries[queryName] = this.world.queries.create(Components)
     }
   }
+
   init() {}
+
   update() {}
+
   reset() {}
 }

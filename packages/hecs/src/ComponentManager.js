@@ -6,13 +6,10 @@ export class ComponentManager {
     this.componentsByName = {}
   }
 
-  register(Components) {
-    if (!Array.isArray(Components)) Components = [Components]
-    Components.forEach(Component => {
-      Component.id = this.lastComponentId++
-      this.componentsByName[Component.name] = Component
-      this.count++
-    })
+  register(Component) {
+    Component.id = this.lastComponentId++
+    this.componentsByName[Component.name] = Component
+    this.count++
     return this
   }
 
