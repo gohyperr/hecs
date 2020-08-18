@@ -9,11 +9,11 @@ module.exports = env => {
     entry: './src/index.js',
     output: {
       path: path.resolve(__dirname, 'dist'),
-      filename: 'hyperr-ecs.js',
+      filename: 'hecs.js',
       library: {
-        root: 'HyperrECS',
-        amd: 'hyperr-ecs',
-        commonjs: 'hyperr-ecs',
+        root: 'hecs',
+        amd: 'hecs',
+        commonjs: 'hecs',
       },
       libraryTarget: 'umd',
       globalObject: 'this',
