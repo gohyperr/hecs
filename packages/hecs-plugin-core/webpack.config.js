@@ -9,11 +9,11 @@ module.exports = env => {
     entry: './src/index.js',
     output: {
       path: path.resolve(__dirname, 'dist'),
-      filename: 'hecs.js',
+      filename: 'hecs-plugin-core.js',
       library: {
-        root: 'hecs',
-        amd: 'hecs',
-        commonjs: 'hecs',
+        root: 'HecsPluginCore',
+        amd: 'hecs-plugin-core',
+        commonjs: 'hecs-plugin-core',
       },
       libraryTarget: 'umd',
       globalObject: 'this',
@@ -21,6 +21,14 @@ module.exports = env => {
     devtool: 'source-map',
     node: { fs: 'empty' },
     plugins: [new CleanWebpackPlugin()],
+    externals: {
+      hecs: {
+        commonjs: 'hecs',
+        commonjs2: 'hecs',
+        amd: 'hecs',
+        root: 'hecs',
+      },
+    },
     module: {
       rules: [
         {
