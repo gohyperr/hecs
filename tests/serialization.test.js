@@ -5,8 +5,9 @@ class LocalComp extends LocalComponent {}
 class StateComp extends StateComponent {}
 
 describe('serialization', () => {
-  const world = new World()
-  world.components.register([Comp, LocalComp, StateComp])
+  const world = new World({
+    components: [Comp, LocalComp, StateComp],
+  })
 
   const entity = world.entities.create().add(Comp).add(LocalComp).add(StateComp)
 

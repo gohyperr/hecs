@@ -26,9 +26,10 @@ class ModelSystem extends System {
 }
 
 describe('state components', () => {
-  const world = new World()
-  world.components.register([Model, ModelMesh])
-  world.systems.register(ModelSystem)
+  const world = new World({
+    systems: [ModelSystem],
+    components: [Model, ModelMesh],
+  })
 
   const system = world.systems.get(ModelSystem)
   let block = world.entities.create().activate()

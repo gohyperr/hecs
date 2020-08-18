@@ -4,17 +4,19 @@ export class ArchetypeManager {
   constructor(world, idSize) {
     this.world = world
     this.archetypes = {}
-    this.initialId = this.createInitialId(idSize)
-    this.createArchetype(this.initialId, [])
+    this.initialId = null
   }
 
-  createInitialId(size) {
-    let id = ''
-    while (size) {
-      id += '0'
-      size--
+  init() {
+    this.initialId = ''
+    let idSize = this.world.components.count
+    while (idSize) {
+      this.initialId += '0'
+      idSize--
     }
-    return id
+    console.log(`ECS: archetype id size is ${this.world.components.count}`)
+    console.log('ddd', this.initialId)
+    this.createArchetype(this.initialId, [])
   }
 
   onEntityActive(entity) {

@@ -49,9 +49,10 @@ class ModelSystem extends System {
   }
 }
 
-const world = new World()
-world.systems.register(ModelSystem)
-world.components.register([Model, Mesh])
+const world = new World({
+  systems: [ModelSystem],
+  components: [Model, Mesh]
+})
 
 world.entities.create().add(Model, { type: 'basketball' }).activate()
 
@@ -68,8 +69,15 @@ update()
 
 ```js
 import { World } from 'hyperr-ecs'
+import CorePlugin from 'hyperr-ecs-plugin-core'
+import MySystem from './MySystem'
+import MyComponent from './MyComponent'
 
-const world = new World()
+const world = new World({
+  plugins: [CorePlugin],
+  systems: [MySystem],
+  components: [MyComponent]
+})
 ```
 
 ### Updating the world
@@ -117,7 +125,7 @@ basketball.remove(Model)
 
 ### Activating an entity
 
-Entities are inactive by default and are not simulated in the world until they are activated:
+Entities are inactive by default and are not simulated in world queries until they are activated:
 
 ```js
 basketball.activate()
@@ -127,7 +135,8 @@ basketball.activate()
 
 If you want to remove an entity from the world but still keep it around, use deactivate.
 When deactivated, all Components are temporarily removed except StateComponents, so that
-System queries can still process and deallocate any resources.
+System queries can still process and deallocate any resources. Once all StateComponents are
+removed the enitity is completely removed from all queries.
 
 ```js
 basketball.deactivate()
@@ -157,18 +166,27 @@ export class Model extends Component {
 }
 ```
 
-### Registering components
+## LocalComponents
+
+LocalComponents work exactly the same as Components except they are ignored when calling
+`world.toJSON()` or `entity.toJSON()`. LocalComponents should be used in a network 
+environment when the data doesn't need to be synced between other servers or clients.
 
 ```js
-world.components.register(Model)
-```
+import { LocalComponent } from 'hyperr-ecs'
+import { Axis } from './types'
 
-This method also accepts an array of Components.
+export class Input extends LocalComponent {
+  static props = {
+    axis: Types.Axis2D
+  }
+}
+```
 
 ## StateComponents
 
-StateComponents work the same way as regular Components but are kept around after
-an entity is deactivated or destroyed so that Systems can process or deallocate 
+StateComponents work the same as regular Components but are kept around after
+an entity is deactivated or destroyed, so that Systems can process or deallocate 
 resources.
 
 ```js
@@ -184,7 +202,7 @@ export class Mesh extends StateComponent {
 
 ## Systems
 
-### Defining systems
+### Creating systems
 
 ```js
 import { System, Not, Changed } from 'hyperr-ecs'
@@ -217,11 +235,3 @@ export class ModelSystem extends System {
   }
 }
 ```
-
-### Registering systems
-
-```js
-world.systems.register(ModelSystem)
-```
-
-This method also accepts an array of Systems

@@ -22,8 +22,9 @@ class ConfiguredTypes extends Component {
 }
 
 describe('types', () => {
-  const world = new World()
-  world.components.register([BaseTypes, ConfiguredTypes])
+  const world = new World({
+    components: [BaseTypes, ConfiguredTypes],
+  })
 
   let entity = world.entities.create()
 

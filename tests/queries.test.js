@@ -18,9 +18,10 @@ class TransformSystem extends System {
 }
 
 describe('basic queries', () => {
-  const world = new World()
-  world.components.register(Transform)
-  world.systems.register(TransformSystem)
+  const world = new World({
+    systems: [TransformSystem],
+    components: [Transform],
+  })
 
   const system = world.systems.get(TransformSystem)
   let block

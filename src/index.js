@@ -8,3 +8,4 @@ export { StateComponent } from './StateComponent'
 export { Not } from './Not'
 export { Modified } from './Modified'
 export { Types }
+export { createPlugin } from './createPlugin'
