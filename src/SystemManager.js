@@ -9,7 +9,7 @@ export class SystemManager {
 
   register(System, order = 0) {
     if (this.Systems.has(System)) {
-      console.warn('ECS: system already registered')
+      console.warn(`ECS: already registered system '${System.name}'`)
       return
     }
     const system = new System(this.world, order)
