@@ -1,6 +1,6 @@
 {
   "name": "hyperr-ecs",
-  "version": "0.5.5",
+  "version": "0.5.6",
   "main": "dist/hyperr-ecs.js",
   "homepage": "https://github.com/gohyperr/hecs/tree/master/packages/hecs",
   "scripts": {
