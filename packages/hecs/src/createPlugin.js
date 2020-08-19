@@ -3,7 +3,7 @@ export function createPlugin({
   plugins = [],
   systems = [],
   components = [],
-  providers = {},
+  decorate = () => {},
 }) {
   if (!name) throw new Error('ECS: createPlugin requires name')
   return {
@@ -11,6 +11,6 @@ export function createPlugin({
     plugins,
     systems,
     components,
-    providers,
+    decorate,
   }
 }

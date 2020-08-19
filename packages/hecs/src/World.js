@@ -40,11 +40,8 @@ export class World {
     plugin.components.forEach(Component => {
       this.components.register(Component)
     })
-    for (const name in plugin.providers) {
-      if (this.providers[name]) {
-        throw new Error(`ECS: provider ${name} already taken`)
-      }
-      this.providers[name] = plugin.providers[name]
+    if (plugin.decorate) {
+      plugin.decorate(this)
     }
     this.plugins.set(plugin, true)
     console.log(`ECS: registered plugin '${plugin.name}'`)
