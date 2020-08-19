@@ -1,8 +1,8 @@
 {
-  "name": "hecs-plugin-core",
+  "name": "hecs-plugin-physx",
   "version": "0.6.0",
-  "main": "dist/hecs-plugin-core.js",
-  "homepage": "https://github.com/gohyperr/hecs/tree/master/packages/hecs-plugin-core",
+  "main": "dist/hecs-plugin-physx.js",
+  "homepage": "https://github.com/gohyperr/hecs/tree/master/packages/hecs-plugin-physx",
   "scripts": {
     "start": "webpack --watch",
     "test": "jest",
