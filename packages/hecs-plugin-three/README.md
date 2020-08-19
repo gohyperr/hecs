@@ -1,4 +1,7 @@
-# Hecs Plugin Three (WIP)
+| :warning: Important: This package is WIP and is not ready for use |
+| --- |
+
+# Hecs Plugin Three
 
 A plugin for Hecs that adds functionality to render three.js models and primitives.
 

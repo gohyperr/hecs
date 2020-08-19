@@ -1,4 +1,9 @@
+| :warning: Important: This package is WIP and is not ready for use |
+| --- |
+
 # Hecs Plugin Core
+
+| Note: this package is WIP, not published to NPM or ready for use
 
 This is a plugin for Hecs that adds a bunch of core components and types to the ECS. It is used by `hecs-plugin-three` and `hecs-plugin-physx` to provide some common components shared between them.
 

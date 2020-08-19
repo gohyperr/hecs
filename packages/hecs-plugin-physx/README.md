@@ -1,3 +1,4 @@
-# Hecs Plugin Core
+| :warning: Important: This package is WIP and is not ready for use |
+| --- |
 
-WIP
+# Hecs Plugin PhysX
