@@ -256,7 +256,7 @@ export default createPlugin({
 })
 ```
 
-**name:** The name of your plugin, used for debugging purposes to identify which plugin has an issue.
+**name:** The name of your plugin, used for debugging purposes.
 
 **plugins:** A plugin can depend on other plugins. If two plugins depend on the same plugin it will only be registered once.
 
