@@ -257,7 +257,11 @@ export default createPlugin({
 ```
 
 **name:** The name of your plugin, used for debugging purposes to identify which plugin has an issue.
+
 **plugins:** A plugin can depend on other plugins. If two plugins depend on the same plugin it will only be registered once.
+
 **systems:** An array of Systems to add to the world.
+
 **components:** An array of Components to register.
+
 **decorate:** A function that provides the world instance. Useful for constructing shared services, eg scenes.
