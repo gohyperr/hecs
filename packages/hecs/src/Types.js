@@ -37,6 +37,20 @@ export const Text = {
   },
 }
 
+export const Ref = {
+  name: 'Ref',
+  initial(value) {
+    return value || null
+  },
+  toJSON(value) {
+    // not serializable
+    return null
+  },
+  fromJSON(data, value) {
+    return data || null
+  },
+}
+
 const _JSON = typeof window === 'undefined' ? global.JSON : window.JSON
 
 export const JSON = {
