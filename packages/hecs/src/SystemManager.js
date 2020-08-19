@@ -28,7 +28,7 @@ export class SystemManager {
   init() {
     for (let i = 0; i < this.systems.length; i++) {
       const system = this.systems[i]
-      system.init(this.world.providers)
+      system.init(this.world)
     }
   }
 
