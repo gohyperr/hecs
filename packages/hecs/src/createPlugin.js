@@ -5,7 +5,7 @@ export function createPlugin({
   components = [],
   decorate = () => {},
 }) {
-  if (!name) throw new Error('ECS: createPlugin requires name')
+  if (!name) throw new Error('hecs: createPlugin requires name')
   return {
     name,
     plugins,
