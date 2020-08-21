@@ -1,1 +1,1 @@
-export { Color } from './Color'
+export { Object3DType } from './Object3DType'

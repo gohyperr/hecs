@@ -1,9 +1,13 @@
+import { createPlugin } from 'hecs'
+
 import * as Components from './components'
 import * as Systems from './systems'
-import { createPlugin } from 'hecs'
+import { Presentation } from './Presentation'
 
 export * from './types'
 export * from './components'
+
+export { Components }
 
 // convert Components into an array
 const components = []
@@ -18,7 +22,10 @@ for (const key in Systems) {
 }
 
 export default createPlugin({
-  name: 'hecs-plugin-core',
+  name: 'hecs-plugin-three',
   systems,
   components,
+  decorate(world) {
+    world.presentation = new Presentation(world)
+  },
 })

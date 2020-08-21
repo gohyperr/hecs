@@ -5,6 +5,12 @@ import { createPlugin } from 'hecs'
 export * from './types'
 export * from './components'
 
+export { Asset } from './Asset'
+export { Quaternion } from './Quaternion'
+export { Vector3 } from './Vector3'
+
+export { Components }
+
 // convert Components into an array
 const components = []
 for (const key in Components) {

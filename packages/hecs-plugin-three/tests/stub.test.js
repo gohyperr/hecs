@@ -1,13 +1,12 @@
 import { World } from 'hecs'
-import CorePlugin, { Foo, Color } from '../src'
+import ThreePlugin, { Object3D } from '../src'
 
 describe('stub', () => {
   test('is stubbed', () => {
     const world = new World({
-      plugins: [CorePlugin],
+      plugins: [ThreePlugin],
     })
-    expect(Foo).toBeDefined()
-    expect(Color).toBeDefined()
-    expect(world.systems.systems.length).toBe(1)
+    expect(Object3D).toBeDefined()
+    expect(world.systems.systems.length).toBe(5)
   })
 })

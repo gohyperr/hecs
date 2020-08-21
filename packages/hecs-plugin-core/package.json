@@ -1,6 +1,6 @@
 {
   "name": "hecs-plugin-core",
-  "version": "0.6.0",
+  "version": "0.6.2",
   "main": "dist/hecs-plugin-core.js",
   "homepage": "https://github.com/gohyperr/hecs/tree/master/packages/hecs-plugin-core",
   "scripts": {
@@ -10,7 +10,7 @@
     "prepublish": "yarn build"
   },
   "peerDependencies": {
-    "hecs": "^0.6.0"
+    "hecs": "^0.6.2"
   },
   "devDependencies": {
     "@babel/core": "^7.8.3",
@@ -19,7 +19,7 @@
     "babel-jest": "^26.1.0",
     "babel-loader": "^8.0.6",
     "clean-webpack-plugin": "^3.0.0",
-    "hecs": "^0.6.0",
+    "hecs": "^0.6.2",
     "jest": "^26.1.0",
     "webpack": "^4.41.5",
     "webpack-cli": "^3.3.10"

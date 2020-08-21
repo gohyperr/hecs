@@ -9,11 +9,11 @@ module.exports = env => {
     entry: './src/index.js',
     output: {
       path: path.resolve(__dirname, 'dist'),
-      filename: 'hecs-plugin-core.js',
+      filename: 'hecs-plugin-three.js',
       library: {
-        root: 'HecsPluginCore',
-        amd: 'hecs-plugin-core',
-        commonjs: 'hecs-plugin-core',
+        root: 'HecsPluginThree',
+        amd: 'hecs-plugin-three',
+        commonjs: 'hecs-plugin-three',
       },
       libraryTarget: 'umd',
       globalObject: 'this',
@@ -27,6 +27,18 @@ module.exports = env => {
         commonjs2: 'hecs',
         amd: 'hecs',
         root: 'hecs',
+      },
+      'hecs-plugin-core': {
+        commonjs: 'hecs-plugin-core',
+        commonjs2: 'hecs-plugin-core',
+        amd: 'hecs-plugin-core',
+        root: 'HecsPluginCore',
+      },
+      three: {
+        commonjs: 'three',
+        commonjs2: 'three',
+        amd: 'three',
+        root: 'THREE',
       },
     },
     module: {

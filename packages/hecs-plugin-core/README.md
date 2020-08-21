@@ -3,15 +3,13 @@
 
 # Hecs Plugin Core
 
-| Note: this package is WIP, not published to NPM or ready for use
-
-This is a plugin for Hecs that adds a bunch of core components and types to the ECS. It is used by `hecs-plugin-three` and `hecs-plugin-physx` to provide some common components shared between them.
+A plugin for Hecs for that adds scene hierarchy and some other common components and types. It is used by `hecs-plugin-three` and `hecs-plugin-physx`.
 
 ---
 
 ## Usage
 
-Add the plugin to your plugin list when creating a World:
+1. Add the plugin to your plugin list when creating a World
 
 ```js
 import { World } from 'hecs'
@@ -24,19 +22,19 @@ const world = new World({
 })
 ```
 
+A world instance with this plugin installed can now use all of the features below:
+
 ---
 
-## New Components
+## Parent (Component)
 
-### Parent
-
-The `Parent` component adds scene hierarchy functionality to the ECS.
+Adding this component to an entity signifies it is a child of another entity.
 
 ```js
 entity.add(Parent, { id: 'someEntityId' })
 ```
 
-### Transform
+### Transform (Component)
 
 The `Transform` component adds 3D spatial awareness to an entity. The `Transform` component represents the local transform of the entity in respect to its parent (or world coordinates).
 
@@ -48,18 +46,15 @@ entity.add(Transform, {
 })
 ```
 
-### WorldTransform
+### WorldTransform (Component)
 
-`WorldTransform` has the same properties as the `Transform` component and is automatically added - by this plugin - to all entities with a `Transform` component. If the entity has no `Parent` then the `WorldTransform` will be the same as the `Transform`.
-This shouldn't be added manually to entities and is intended to be used as a read-only source of information to be sent into things like physics or rendering.
+`WorldTransform` has the same properties as the `Transform` component and is automatically added (by this plugin) to all entities with a `Transform` component. If the entity has no `Parent` then the `WorldTransform` will be the same as the `Transform`.
+This shouldn't need to be added manually and is intended to be used as a read-only source of information you can send to physics/rendering.
 
----
 
-## New Types
+### Vector3 (Type)
 
-### Vector3
-
-Adds a new `Vector3` type and class to be used on components. This construct mimics the three.js version but does not require it.
+Adds a new `Vector3` type and class to be used on components. The class works exactly the same as three.js but is standalone, bundled with this plugin.
 
 Defaults to `new Vector3(0, 0, 0)`
 
@@ -77,9 +72,9 @@ export class Cube extends Component {
 }
 ```
 
-### Quaternion
+### Quaternion (Type)
 
-Adds a new `Quaternion` type and class to be used on components. This construct mimics the three.js version but does not require it.
+Adds a new `Quaternion` type and class to be used on components. The class works exactly the same the three.js version but is bundled standalone with this plugin.
 
 Defaults to `new Quaternion(0, 0, 0, 1)`
 
@@ -96,9 +91,9 @@ export class Cube extends Component {
 }
 ```
 
-### Entity
+### Entity (Type)
 
-The `Entity` type is essentially the same as `String` but is recognized specifically as the ID of an Entity
+The `Entity` type works the same as `String` but exists to differentiate as a valid entity ID
 
 ```js
 import { Component } from 'hecs'
@@ -113,11 +108,11 @@ export class Attach extends Component {
 }
 ```
 
-### Asset
+### Asset (Type)
 
-The `Asset` type describes a file that can be loaded and used by a system.
+The `Asset` type and class describes a file that can be loaded and used by a system. It is used in `hecs-plugin-three` to load GLTF meshes but could also be used for any other kind of file.
 
-Defaults to `null`
+Defaults to `new Asset()`
 
 ```js
 import { Component } from 'hecs'
@@ -133,11 +128,11 @@ export class Model extends Component {
 }
 ```
 
-### Color
+### Color (Type)
 
-Adds a new `Color` type to be used on components.
+Adds a new `Color` type to be used on components. Works the same as `String` but is differentiated for validation purposes.
 
-Defaults to `#ffffff` (white)
+Defaults to `#fff` (white)
 
 ```js
 import { Component } from 'hecs'
@@ -152,9 +147,9 @@ export class Cube extends Component {
 }
 ```
 
-### Select
+### Select (Type)
 
-The `Select` type works exactly like a `String` but is recognized specifically as a value from a list of options.
+The `Select` type works exactly like a `String` but is differentiated for validation reasons. It is recognized specifically as a value from a list of options.
 
 ```js
 import { Component } from 'hecs'

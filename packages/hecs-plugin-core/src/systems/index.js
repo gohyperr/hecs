@@ -1,1 +1,1 @@
-export { BarSystem } from './BarSystem'
+export { WorldTransformSystem } from './WorldTransformSystem'

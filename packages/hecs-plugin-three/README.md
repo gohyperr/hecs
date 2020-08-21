@@ -3,15 +3,14 @@
 
 # Hecs Plugin Three
 
-A plugin for Hecs that adds functionality to render three.js models and primitives.
+A plugin for Hecs that adds functionality to render three.js models and primitives. When used in node or without a viewport configured then appropriate systems become inactive.
 
 ---
 
 ## Usage
 
-1. Install the peerDependency `three.js`
+1. Install peer dependencies `three` and `hecs-plugin-core`, then
 2. Add the plugin to your plugin list when creating a World
-3. You can now use all of the features below
 
 ```js
 import { World } from 'hecs'
@@ -24,19 +23,17 @@ const world = new World({
 })
 ```
 
+A world instance with this plugin installed can now use all of the features below:
+
 ---
 
-## Three Provider
+## World.presentation.scene
 
-Use this to set the viewport (DOM element) you want to render to. 
+This is the three.js scene used internally. It's available if you need it but completely optional.
 
-The viewport is watched using a ResizeObserver internally and will update the camera and renderer automatically.
+## World.presentation.setViewport(DOMElement)
 
-```js
-const three = world.get('three')
-const viewport = document.body.querySelector('viewport')
-three.setViewport(viewport)
-```
+Configuring this with a DOMElement will attach the renderer and start rendering your scenes to it. Interally it uses ResizeObserver to watch for resize and automatically updates the camera and renderer perspectives. When no viewport is defined nothing will be rendered and some systems will run passively. Can be unset with `null`
 
 ## Camera (Component)
 
@@ -97,6 +94,6 @@ entity
 
 ## Object3D (Component)
 
-All entities with a `Transform` are given an `Object3D` component which is the container all `Model` and `Shape` meshes are added to. If the entity also contains a valid `Parent` then this object3d is automatically added as a child to it's parent object3d container.
+All entities with a `Transform` are given an `Object3D` component which is added to the scene at the correct hierarchical position (eg when using a `Parent` component). This container is used internally for all `Model` and `Shape` meshes that are created.
 
-Advanced: You can use this container to add and remove your own meshes without needing to worry about scene hierarchy. See how this can be done in the ModelSystem and ShapeSystem.
+Advanced: You can use this container to add and remove your own meshes without needing to worry about scene hierarchy. See how this can be done in ModelSystem and ShapeSystem.
