@@ -13,7 +13,7 @@ export class System {
     }
   }
 
-  init() {}
+  init(world) {}
 
   update() {}
 

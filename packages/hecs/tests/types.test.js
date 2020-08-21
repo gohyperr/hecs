@@ -1,23 +1,30 @@
-import { World, Component, Types } from '../src'
+import {
+  World,
+  Component,
+  BooleanType,
+  NumberType,
+  TextType,
+  JSONType,
+} from '../src'
 
 const tomorrow = new Date()
 tomorrow.setDate(tomorrow.getDate() + 1)
 
 class BaseTypes extends Component {
   static props = {
-    boolean: Types.Boolean,
-    number: Types.Number,
-    text: Types.Text,
-    json: Types.JSON,
+    boolean: BooleanType,
+    number: NumberType,
+    text: TextType,
+    json: JSONType,
   }
 }
 
 class ConfiguredTypes extends Component {
   static props = {
-    boolean: { type: Types.Boolean, default: true },
-    number: { type: Types.Number, default: 5 },
-    text: { type: Types.Text, default: 'Hello' },
-    json: { type: Types.JSON, default: { foo: 'bar' } },
+    boolean: { type: BooleanType, default: true },
+    number: { type: NumberType, default: 5 },
+    text: { type: TextType, default: 'Hello' },
+    json: { type: JSONType, default: { foo: 'bar' } },
   }
 }
 

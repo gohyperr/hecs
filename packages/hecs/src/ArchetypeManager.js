@@ -14,7 +14,7 @@ export class ArchetypeManager {
       this.initialId += '0'
       idSize--
     }
-    console.log(`hecs: archetype id size is ${this.world.components.count}`)
+    console.log(`hecs: using ${this.world.components.count} bit archetype ids`)
     this.createArchetype(this.initialId, [])
   }
 
