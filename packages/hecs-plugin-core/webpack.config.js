@@ -23,10 +23,10 @@ module.exports = env => {
     plugins: [new CleanWebpackPlugin()],
     externals: {
       hecs: {
+        root: 'HECS',
+        amd: 'hecs',
         commonjs: 'hecs',
         commonjs2: 'hecs',
-        amd: 'hecs',
-        root: 'hecs',
       },
     },
     module: {

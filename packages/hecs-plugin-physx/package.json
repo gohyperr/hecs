@@ -2,7 +2,6 @@
   "name": "hecs-plugin-physx",
   "version": "0.6.2",
   "main": "dist/hecs-plugin-physx.js",
-  "homepage": "https://github.com/gohyperr/hecs/tree/master/packages/hecs-plugin-physx",
   "scripts": {
     "start": "webpack --watch",
     "test": "jest",
@@ -23,5 +22,28 @@
     "jest": "^26.1.0",
     "webpack": "^4.41.5",
     "webpack-cli": "^3.3.10"
-  }
+  },
+  "author": {
+    "name": "Ash Connell",
+    "email": "hello@ashconnell.com"
+  },
+  "description": "A plugin for hecs that provides physics features via PhysX",
+  "keywords": [
+    "ECS",
+    "plugin",
+    "archetype",
+    "entity",
+    "component",
+    "system",
+    "PhysX",
+    "physics"
+  ],
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/gohyperr/hecs.git",
+    "directory": "packages/hecs-plugin-physx"
+  },
+  "homepage": "https://github.com/gohyperr/hecs/tree/master/packages/hecs-plugin-physx",
+  "bugs": "https://github.com/gohyperr/hecs/issues",
+  "license": "MIT"
 }

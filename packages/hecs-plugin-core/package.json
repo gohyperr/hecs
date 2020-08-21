@@ -2,7 +2,6 @@
   "name": "hecs-plugin-core",
   "version": "0.6.2",
   "main": "dist/hecs-plugin-core.js",
-  "homepage": "https://github.com/gohyperr/hecs/tree/master/packages/hecs-plugin-core",
   "scripts": {
     "start": "webpack --watch",
     "test": "jest",
@@ -23,5 +22,27 @@
     "jest": "^26.1.0",
     "webpack": "^4.41.5",
     "webpack-cli": "^3.3.10"
-  }
+  },
+  "author": {
+    "name": "Ash Connell",
+    "email": "hello@ashconnell.com"
+  },
+  "description": "A plugin for hecs that adds scene hierarchy and other common features",
+  "keywords": [
+    "ECS",
+    "plugin",
+    "archetype",
+    "entity",
+    "component",
+    "system",
+    "hierarchy"
+  ],
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/gohyperr/hecs.git",
+    "directory": "packages/hecs-plugin-core"
+  },
+  "homepage": "https://github.com/gohyperr/hecs/tree/master/packages/hecs-plugin-core",
+  "bugs": "https://github.com/gohyperr/hecs/issues",
+  "license": "MIT"
 }

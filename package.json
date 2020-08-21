@@ -5,5 +5,10 @@
       "packages/*"
     ],
     "nohoist": []
-  }
+  },
+  "author": {
+    "name": "Ash Connell",
+    "email": "hello@ashconnell.com"
+  },
+  "license": "MIT"
 }

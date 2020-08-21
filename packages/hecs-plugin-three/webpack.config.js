@@ -23,22 +23,22 @@ module.exports = env => {
     plugins: [new CleanWebpackPlugin()],
     externals: {
       hecs: {
+        root: 'HECS',
+        amd: 'hecs',
         commonjs: 'hecs',
         commonjs2: 'hecs',
-        amd: 'hecs',
-        root: 'hecs',
       },
       'hecs-plugin-core': {
+        root: 'HecsPluginCore',
+        amd: 'hecs-plugin-core',
         commonjs: 'hecs-plugin-core',
         commonjs2: 'hecs-plugin-core',
-        amd: 'hecs-plugin-core',
-        root: 'HecsPluginCore',
       },
       three: {
+        root: 'THREE',
+        amd: 'three',
         commonjs: 'three',
         commonjs2: 'three',
-        amd: 'three',
-        root: 'THREE',
       },
     },
     module: {

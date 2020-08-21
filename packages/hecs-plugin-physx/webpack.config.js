@@ -9,9 +9,9 @@ module.exports = env => {
     entry: './src/index.js',
     output: {
       path: path.resolve(__dirname, 'dist'),
-      filename: 'hecs-plugin-core.js',
+      filename: 'hecs-plugin-physx.js',
       library: {
-        root: 'HecsPluginCore',
+        root: 'HecsPluginPhysX',
         amd: 'hecs-plugin-core',
         commonjs: 'hecs-plugin-core',
       },
@@ -23,10 +23,10 @@ module.exports = env => {
     plugins: [new CleanWebpackPlugin()],
     externals: {
       hecs: {
+        root: 'HECS',
+        amd: 'hecs',
         commonjs: 'hecs',
         commonjs2: 'hecs',
-        amd: 'hecs',
-        root: 'hecs',
       },
     },
     module: {
