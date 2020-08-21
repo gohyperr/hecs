@@ -1,4 +1,4 @@
-export const Boolean = {
+export const BooleanType = {
   name: 'Boolean',
   initial(value) {
     return value || false
@@ -11,7 +11,7 @@ export const Boolean = {
   },
 }
 
-export const Number = {
+export const NumberType = {
   name: 'Number',
   initial(value) {
     return value || 0
@@ -24,7 +24,7 @@ export const Number = {
   },
 }
 
-export const Text = {
+export const TextType = {
   name: 'Text',
   initial(value) {
     return value || ''
@@ -37,7 +37,7 @@ export const Text = {
   },
 }
 
-export const Ref = {
+export const RefType = {
   name: 'Ref',
   initial(value) {
     return value || null
@@ -53,7 +53,7 @@ export const Ref = {
 
 const _JSON = typeof window === 'undefined' ? global.JSON : window.JSON
 
-export const JSON = {
+export const JSONType = {
   name: 'JSON',
   initial(value) {
     if (value) return _JSON.parse(_JSON.stringify(value))
