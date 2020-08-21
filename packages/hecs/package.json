@@ -2,7 +2,6 @@
   "name": "hecs",
   "version": "0.6.2",
   "main": "dist/hecs.js",
-  "homepage": "https://github.com/gohyperr/hecs/tree/master/packages/hecs",
   "scripts": {
     "start": "webpack --watch",
     "test": "jest",
@@ -19,5 +18,26 @@
     "jest": "^26.1.0",
     "webpack": "^4.41.5",
     "webpack-cli": "^3.3.10"
-  }
+  },
+  "author": {
+    "name": "Ash Connell",
+    "email": "hello@ashconnell.com"
+  },
+  "description": "A high performance ECS with a plugin ecosystem",
+  "keywords": [
+    "ECS",
+    "plugin",
+    "archetype",
+    "entity",
+    "component",
+    "system"
+  ],
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/gohyperr/hecs.git",
+    "directory": "packages/hecs"
+  },
+  "homepage": "https://github.com/gohyperr/hecs/tree/master/packages/hecs",
+  "bugs": "https://github.com/gohyperr/hecs/issues",
+  "license": "MIT"
 }

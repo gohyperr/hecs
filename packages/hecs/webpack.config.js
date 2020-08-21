@@ -11,7 +11,7 @@ module.exports = env => {
       path: path.resolve(__dirname, 'dist'),
       filename: 'hecs.js',
       library: {
-        root: 'hecs',
+        root: 'HECS',
         amd: 'hecs',
         commonjs: 'hecs',
       },

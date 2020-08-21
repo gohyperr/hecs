@@ -4,13 +4,7 @@ This document contains information on how some of the more complex pieces of the
 
 ## Archetype IDs
 
-The ID of each archetype is a fixed length String and each character in the string can be a `0` or a `1`. The index of each character corresponds with a single Component. You can see in `ComponentManager.js` that when registering a component, it is assigned an auto-incrementing ID for this reason.
-
-By default the length of these ID's are 32 which means each world can support up to 32 components. The size of the ID can be changed by specifying the amount of components you have up front and can potentially work with hundreds of components:
-
-```js
-const world = new World({ idSize: 200 })
-```
+The ID of each archetype is a fixed length String and each character in the string can be a `0` or a `1`. The index of each character corresponds with a single Component. You can see in `ComponentManager.js` that when registering a component, it is assigned an auto-incrementing ID for this reason. When the World is instantiated we use the number of registered components to generate a base ID of the same length all set to `0`'s.
 
 ID's are used like this because they allow the world to perform extremely efficient archetype swaps whenever entity components change. For example, when an entity has a component removed we can easily swap the corresponding ID character for that component from `1` to `0` and we now know the id of the new archetype. Then all that needs to happen is the entity is moved from one archetype array to another. Blazing!
 
@@ -25,7 +19,7 @@ By doing this we do inverse the problem and remove the constant need to loop thr
 
 ## Tracking Modified Components
 
-You can mark components as modified using `.modified()` and they can be tracked in queries using `Modified(Component)`. When components are modified they need to appear in queries for exactly one full cycle of systems starting from the system it was modified in and ending in the system before it in the next update. This way, all systems have a chance to react to the change. If you have four systems `A`, `B`, `C` and `D` and you modify a component in system `C`, then queries that match will track this change in the rest of the `C`, `D`, and then in the next update in `A` and `B` too.
+You can mark components as modified using `.modified()` and they can be tracked in queries using `Modified(Component)`. When components are modified they need to appear in queries for exactly one full cycle of systems starting from the system it was modified in and ending in the system before it in the next update. This way, all systems have a chance to react to the change. If you have four systems `A`, `B`, `C` and `D` and you modify a component in system `C`, then queries that match will track this change in the rest of `C`, `D`, and then in the next update in `A` and `B` too.
 
 To support this, we increment system ticks each time one is updated. When a component is changed, we set `modifiedUntilSystemTick` to equal `currentSystemTick + numberOfSystems`. This leaves us with a super efficient math check to determine if a component is modified when traversing queries that use the `Modified()` rule.
 
