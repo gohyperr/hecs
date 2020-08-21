@@ -28,9 +28,10 @@ export class World {
 
   registerPlugin(plugin) {
     if (this.plugins.has(plugin)) {
-      console.warn(`ECS: already registered plugin '${plugin.name}'`)
+      console.warn(`hecs: already registered plugin '${plugin.name}'`)
       return
     }
+    this.plugins.set(plugin, true)
     plugin.plugins.forEach(plugin => {
       this.registerPlugin(plugin)
     })
@@ -43,8 +44,7 @@ export class World {
     if (plugin.decorate) {
       plugin.decorate(this)
     }
-    this.plugins.set(plugin, true)
-    console.log(`ECS: registered plugin '${plugin.name}'`)
+    console.log(`hecs: registered plugin '${plugin.name}'`)
   }
 
   update(delta) {
