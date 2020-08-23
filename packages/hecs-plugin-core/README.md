@@ -9,7 +9,13 @@ A plugin for Hecs for that adds scene hierarchy and some other common components
 
 ## Usage
 
-1. Add the plugin to your plugin list when creating a World
+Install via npm/yarn:
+
+```
+yarn add hecs hecs-plugin-core
+```
+
+Add the plugin to your plugin list when creating a World
 
 ```js
 import { World } from 'hecs'

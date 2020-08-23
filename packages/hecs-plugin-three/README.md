@@ -9,8 +9,13 @@ A plugin for Hecs that adds functionality to render three.js models and primitiv
 
 ## Usage
 
-1. Install peer dependencies `three` and `hecs-plugin-core`, then
-2. Add the plugin to your plugin list when creating a World
+Install via npm/yarn:
+
+```
+yarn add hecs hecs-plugin-core hecs-plugin-three three
+```
+
+Add the plugin to your plugin list when creating a World
 
 ```js
 import { World } from 'hecs'

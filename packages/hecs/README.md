@@ -4,6 +4,14 @@ A high performance lightweight ECS with a plugin ecosystem.
 
 See [TECHNICAL.md](TECHNICAL.md) for details on performance and the internals of this library.
 
+## Install
+
+Install via npm/yarn:
+
+```
+yarn add hecs
+```
+
 ## Quickstart
 
 ```js
