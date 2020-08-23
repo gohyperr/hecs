@@ -1,7 +1,8 @@
-import { THREE } from './three'
+import { GLTFLoader } from 'three/examples/jsm/loaders/GLTFLoader'
 
 /**
- * GLTFLoader isn't quite ready for use in node.js
+ * GLTFLoader isn't quite supported in node.js so this
+ * is a bit of hack to make it usable
  *
  * 1. load() tries to use XMLHttpRequest which doesn't exist
  *    on node. Instead we just load it ourself using fetch
@@ -13,7 +14,7 @@ import { THREE } from './three'
 
 export class Loader {
   constructor() {
-    this.loader = new THREE.GLTFLoader()
+    this.loader = new GLTFLoader()
     this.cache = {}
   }
 

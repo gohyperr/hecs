@@ -21,26 +21,29 @@ module.exports = env => {
     devtool: 'source-map',
     node: { fs: 'empty' },
     plugins: [new CleanWebpackPlugin()],
-    externals: {
-      hecs: {
-        root: 'HECS',
-        amd: 'hecs',
-        commonjs: 'hecs',
-        commonjs2: 'hecs',
+    externals: [
+      {
+        hecs: {
+          root: 'HECS',
+          amd: 'hecs',
+          commonjs: 'hecs',
+          commonjs2: 'hecs',
+        },
+        'hecs-plugin-core': {
+          root: 'HecsPluginCore',
+          amd: 'hecs-plugin-core',
+          commonjs: 'hecs-plugin-core',
+          commonjs2: 'hecs-plugin-core',
+        },
+        three: {
+          root: 'THREE',
+          amd: 'three',
+          commonjs: 'three',
+          commonjs2: 'three',
+        },
       },
-      'hecs-plugin-core': {
-        root: 'HecsPluginCore',
-        amd: 'hecs-plugin-core',
-        commonjs: 'hecs-plugin-core',
-        commonjs2: 'hecs-plugin-core',
-      },
-      three: {
-        root: 'THREE',
-        amd: 'three',
-        commonjs: 'three',
-        commonjs2: 'three',
-      },
-    },
+      /^three\/examples/,
+    ],
     module: {
       rules: [
         {
