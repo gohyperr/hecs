@@ -1,3 +1,5 @@
+# lerna uses its own format :/
+lerna.json
 # maintain original source format
 packages/hecs-plugin-core/src/Matrix4.js
 packages/hecs-plugin-core/src/Quaternion.js

@@ -6,7 +6,8 @@
     "start": "webpack --watch",
     "test": "jest",
     "build": "NODE_ENV=production webpack",
-    "prepublish": "yarn build"
+    "version": "node scripts/update-peers",
+    "prepublishOnly": "yarn build"
   },
   "peerDependencies": {
     "hecs": "^0.6.2",

@@ -6,6 +6,12 @@
     ],
     "nohoist": []
   },
+  "scripts": {
+    "release": "lerna publish"
+  },
+  "devDependencies": {
+    "lerna": "^3.22.1"
+  },
   "author": {
     "name": "Ash Connell",
     "email": "hello@ashconnell.com"

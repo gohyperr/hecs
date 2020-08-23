@@ -1,0 +1,26 @@
+{
+  "version": "0.6.2",
+  "npmClient": "yarn",
+  "command": {
+    "version": {
+      "allowBranch": "master"
+    },
+    "publish": {
+      "ignoreChanges": [
+        "ignored-file",
+        "*.md"
+      ],
+      "message": "release %s",
+      "registry": "https://npm.pkg.github.com"
+    },
+    "bootstrap": {
+      "ignore": "component-*",
+      "npmClientArgs": [
+        "--no-package-lock"
+      ]
+    }
+  },
+  "packages": [
+    "packages/*"
+  ]
+}
