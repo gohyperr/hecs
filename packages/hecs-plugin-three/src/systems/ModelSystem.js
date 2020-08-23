@@ -1,11 +1,13 @@
 import { System, Not, Modified, Groups } from 'hecs'
 import * as THREE from 'three'
 
+import { IS_BROWSER } from '../utils'
 import { Object3D, Model, ModelLoading, ModelMesh } from '../components'
 
 let ids = 0
 
 export class ModelSystem extends System {
+  active = IS_BROWSER
   order = Groups.Initialization
 
   static queries = {

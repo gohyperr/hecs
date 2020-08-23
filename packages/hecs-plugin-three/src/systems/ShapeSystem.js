@@ -1,10 +1,12 @@
 import { System, Not, Modified, Groups } from 'hecs'
 import * as THREE from 'three'
 
+import { IS_BROWSER } from '../utils'
 import { Shape, ShapeMesh, Object3D } from '../components'
 import { CapsuleGeometry } from '../CapsuleGeometry'
 
 export class ShapeSystem extends System {
+  active = IS_BROWSER
   order = Groups.Initialization
 
   static queries = {
