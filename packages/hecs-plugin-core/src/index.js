@@ -8,6 +8,7 @@ export * from './components'
 export { Asset } from './Asset'
 export { Quaternion } from './Quaternion'
 export { Vector3 } from './Vector3'
+export { Matrix4 } from './Matrix4'
 
 export { Components }
 
