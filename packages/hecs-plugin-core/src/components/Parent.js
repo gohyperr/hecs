@@ -1,13 +1,17 @@
-import { Component } from 'hecs'
-import { EntityType } from '../types'
+import { Component, StringType } from 'hecs'
 
 export class Parent extends Component {
-  static label = 'Parent'
-  static editor = false
   static props = {
     id: {
-      type: EntityType,
-      label: 'Entity',
+      type: StringType,
+      editor: {
+        label: 'Entity',
+        input: 'Entity',
+      },
     },
+  }
+  static editor = {
+    label: 'Parent',
+    hidden: true,
   }
 }

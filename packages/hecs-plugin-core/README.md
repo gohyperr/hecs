@@ -118,23 +118,6 @@ export class Cube extends Component {
 }
 ```
 
-### Entity (Type)
-
-The `Entity` type works the same as `String` but exists to differentiate as a valid entity ID
-
-```js
-import { Component } from 'hecs'
-import { EntityType } from 'hecs-plugin-core'
-
-export class Attach extends Component {
-  static props = {
-    toId: {
-      type: EntityType,
-    },
-  }
-}
-```
-
 ### Asset (Type)
 
 The `Asset` type and class describes a file that can be loaded and used by a system. It is used in `hecs-plugin-three` to load GLTF meshes but could also be used for any other kind of file.
@@ -150,49 +133,6 @@ export class Model extends Component {
     asset: {
       type: AssetType,
       default: new Asset('https://mydomain.com/spaceship.glb')
-    },
-  }
-}
-```
-
-### Color (Type)
-
-Adds a new `Color` type to be used on components. Works the same as `String` but is differentiated for validation purposes.
-
-Defaults to `#fff` (white) if no default is specified on the component
-
-```js
-import { Component } from 'hecs'
-import { ColorType } from 'hecs-plugin-core'
-
-export class Cube extends Component {
-  static props = {
-    color: {
-      type: ColorType,
-      default: '#000000'
-    }
-  }
-}
-```
-
-### Select (Type)
-
-The `Select` type works exactly like a `String` but is differentiated for validation reasons. It is recognized specifically as a value from a list of options.
-
-```js
-import { Component } from 'hecs'
-import { SelectType } from 'hecs-plugin-core'
-
-export class Shape extends Component {
-  static props = {
-    kind: {
-      type: SelectType,
-      label: 'Kind',
-      options: [
-        { label: 'Box', value: 'BOX' },
-        { label: 'Sphere', value: 'SPHERE' },
-      ],
-      default: 'BOX',
     },
   }
 }

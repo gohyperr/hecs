@@ -24,8 +24,8 @@ export const NumberType = {
   },
 }
 
-export const TextType = {
-  name: 'Text',
+export const StringType = {
+  name: 'String',
   initial(value) {
     return value || ''
   },

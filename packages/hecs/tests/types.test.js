@@ -3,7 +3,7 @@ import {
   Component,
   BooleanType,
   NumberType,
-  TextType,
+  StringType,
   JSONType,
 } from '../src'
 
@@ -14,7 +14,7 @@ class BaseTypes extends Component {
   static props = {
     boolean: BooleanType,
     number: NumberType,
-    text: TextType,
+    string: StringType,
     json: JSONType,
   }
 }
@@ -23,7 +23,7 @@ class ConfiguredTypes extends Component {
   static props = {
     boolean: { type: BooleanType, default: true },
     number: { type: NumberType, default: 5 },
-    text: { type: TextType, default: 'Hello' },
+    string: { type: StringType, default: 'Hello' },
     json: { type: JSONType, default: { foo: 'bar' } },
   }
 }

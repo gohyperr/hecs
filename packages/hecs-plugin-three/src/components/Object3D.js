@@ -1,11 +1,9 @@
-import { StateComponent } from 'hecs'
-import { Object3DType } from '../types'
+import { StateComponent, RefType } from 'hecs'
 
 export class Object3D extends StateComponent {
   static props = {
     value: {
-      type: Object3DType,
-      label: 'Object3D',
+      type: RefType,
     },
   }
 }

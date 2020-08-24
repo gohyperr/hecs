@@ -1,6 +1,3 @@
 export { AssetType } from './AssetType'
-export { ColorType } from './ColorType'
-export { EntityType } from './EntityType'
 export { QuaternionType } from './QuaternionType'
-export { SelectType } from './SelectType'
 export { Vector3Type } from './Vector3Type'
