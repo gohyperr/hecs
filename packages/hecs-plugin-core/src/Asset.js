@@ -9,6 +9,7 @@ export class Asset {
     this.name = asset.name
     this.filename = asset.filename
     this.url = asset.url
+    return this
   }
 
   toJSON() {

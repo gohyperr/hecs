@@ -5,7 +5,7 @@ export const AssetType = {
   initial(value) {
     const a = new Asset()
     if (value) a.copy(value)
-    return value
+    return a
   },
   toJSON(value) {
     return value.toJSON()
