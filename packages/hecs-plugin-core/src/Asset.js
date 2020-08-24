@@ -1,8 +1,8 @@
 export class Asset {
   constructor(url) {
-    this.name = null
-    this.filename = null
-    this.url = url || null
+    this.name = ''
+    this.filename = ''
+    this.url = url || ''
   }
 
   copy(asset) {

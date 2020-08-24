@@ -32,15 +32,15 @@ A world instance with this plugin installed can now use all of the features belo
 
 ---
 
-## World.presentation.scene
+### World.presentation.scene
 
 This is the three.js scene used internally. It's available if you need it but completely optional.
 
-## World.presentation.setViewport(DOMElement)
+### World.presentation.setViewport(DOMElement)
 
 Configuring this with a DOMElement will attach the renderer and start rendering your scenes to it. Interally it uses ResizeObserver to watch for resize and automatically updates the camera and renderer perspectives. When no viewport is defined nothing will be rendered and some systems will run passively. Can be unset with `null`
 
-## Camera (Component)
+### Camera (Component)
 
 Adding this component to an entity controls where the camera is in the scene. This component is a singleton so adding it to another entity will remove it from any previous entity.
 
@@ -55,9 +55,13 @@ entity
   .add(Camera)
 ```
 
-## Model (Component)
+### Model (Component)
 
 Adding this component to an entity will load and render a GLTF asset.
+
+Field|Type|Default|Description
+---|---|---|---
+asset|Asset|new Asset()|The asset to load and use for the model
 
 Requires: `Transform`
 
@@ -75,9 +79,21 @@ entity
   })
 ```
 
-## Shape (Component)
+### Shape (Component)
 
 Adding this component to an entity will build and render a primitive shape
+
+Field|Type|Default|Description
+---|---|---|---
+kind|String|'BOX'|The kind of shape to build. Must be one of `BOX`, `SPHERE` or `CAPSULE`
+boxSize|Vector3|new Vector3(1, 1, 1)|The size of the box. Only applicable when kind is `BOX`.
+sphereRadius|Number|0.5|The radius of the sphere. Only applicable when kind is `SPHERE`.
+sphereWidthSegments|Number|16|The width segments of the sphere. Only applicable when kind is `SPHERE`.
+sphereHeightSegments|Number|12|The height segments of the sphere. Only applicable when kind is `SPHERE`.
+capsuleRadius|Number|0.5|The radius of the capsule. Only applicable when kind is `CAPSULE`.
+capsuleHeight|Number|1|The height of the capsule. Only applicable when kind is `CAPSULE`.
+capsuleSegments|Number|5|The number of segments for the capsule. Only applicable when kind is `CAPSULE`.
+color|Color|'#fff'|The color of the shape.
 
 Requires: `Transform`
 
@@ -97,8 +113,12 @@ entity
   })
 ```
 
-## Object3D (Component)
+### Object3D (Component)
 
 All entities with a `Transform` are given an `Object3D` component which is added to the scene at the correct hierarchical position (eg when using a `Parent` component). This container is used internally for all `Model` and `Shape` meshes that are created.
 
-Advanced: You can use this container to add and remove your own meshes without needing to worry about scene hierarchy. See how this can be done in ModelSystem and ShapeSystem.
+Field|Type|Default|Description
+---|---|---|---
+value|Object3D|new Object3D()|The object3d
+
+Advanced: You can use this container to add and remove your own meshes without needing to worry about scene hierarchy. See how this can be done in the ModelSystem and ShapeSystem.

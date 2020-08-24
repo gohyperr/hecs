@@ -32,37 +32,58 @@ A world instance with this plugin installed can now use all of the features belo
 
 ---
 
-## Parent (Component)
+### Parent (Component)
 
 Adding this component to an entity signifies it is a child of another entity.
 
+Field|Type|Default|Description
+---|---|---|---
+id|String|''|The parent entity ID
+
+Example:
 ```js
-entity.add(Parent, { id: 'someEntityId' })
+import { Parent } from 'hecs-plugin-core'
+
+entity.add(Parent, { id: '2:3' })
 ```
 
 ### Transform (Component)
 
 The `Transform` component adds 3D spatial awareness to an entity. The `Transform` component represents the local transform of the entity in respect to its parent (or world coordinates).
 
+Field|Type|Default|Description
+---|---|---|---
+position|Vector3|new Vector3(0, 0, 0)|The local position of the entity
+rotation|Quaternion|new Quaternion(0, 0, 0, 1)|The local rotation of the entity
+scale|Vector3|new Vector3(1, 1, 1)|The local scale of the entity
+
+Example: 
 ```js
+import { Transform } from 'hecs-plugin-core'
+
 entity.add(Transform, { 
   position: new Vector3(1, 2, 3),
-  rotation: new Quaternion(),
-  scale: new Vector3(),
 })
 ```
 
 ### WorldTransform (Component)
 
-`WorldTransform` has the same properties as the `Transform` component and is automatically added (by this plugin) to all entities with a `Transform` component. If the entity has no `Parent` then the `WorldTransform` will be the same as the `Transform`.
-This shouldn't need to be added manually and is intended to be used as a read-only source of information you can send to physics/rendering.
+`WorldTransform` has the same properties as the `Transform` component and is automatically added to all entities with a `Transform` component. If the entity has no `Parent` then the `WorldTransform` will be the same as the `Transform`.
+You shouldn't need to be add this manually, it is intended to be used as a read-only source of information you can send to physics/rendering etc.
 
+Field|Type|Default|Description
+---|---|---|---
+position|Vector3|new Vector3(0, 0, 0)|The world position of the entity
+rotation|Quaternion|new Quaternion(0, 0, 0, 1)|The world rotation of the entity
+scale|Vector3|new Vector3(1, 1, 1)|The world scale of the entity
+
+---
 
 ### Vector3 (Type)
 
 Adds a new `Vector3` type and class to be used on components. The class works exactly the same as three.js but is standalone, bundled with this plugin.
 
-Defaults to `new Vector3(0, 0, 0)`
+Defaults to `new Vector3(0, 0, 0)` if no default is specified on the component
 
 ```js
 import { Component } from 'hecs'
@@ -82,7 +103,7 @@ export class Cube extends Component {
 
 Adds a new `Quaternion` type and class to be used on components. The class works exactly the same the three.js version but is bundled standalone with this plugin.
 
-Defaults to `new Quaternion(0, 0, 0, 1)`
+Defaults to `new Quaternion(0, 0, 0, 1)` if no default is specified on the component
 
 ```js
 import { Component } from 'hecs'
@@ -118,7 +139,7 @@ export class Attach extends Component {
 
 The `Asset` type and class describes a file that can be loaded and used by a system. It is used in `hecs-plugin-three` to load GLTF meshes but could also be used for any other kind of file.
 
-Defaults to `new Asset()`
+Defaults to `new Asset()` if no default is specified on the component
 
 ```js
 import { Component } from 'hecs'
@@ -138,7 +159,7 @@ export class Model extends Component {
 
 Adds a new `Color` type to be used on components. Works the same as `String` but is differentiated for validation purposes.
 
-Defaults to `#fff` (white)
+Defaults to `#fff` (white) if no default is specified on the component
 
 ```js
 import { Component } from 'hecs'
@@ -148,6 +169,7 @@ export class Cube extends Component {
   static props = {
     color: {
       type: ColorType,
+      default: '#000000'
     }
   }
 }
