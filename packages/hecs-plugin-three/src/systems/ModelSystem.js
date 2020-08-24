@@ -23,15 +23,15 @@ export class ModelSystem extends System {
 
   update() {
     this.queries.added.forEach(entity => {
-      console.log(`ModelSystem: ${entity.name} added`)
+      // console.log(`ModelSystem: ${entity.name} added`)
       this.build(entity)
     })
     this.queries.modified.forEach(entity => {
       const model = entity.get(Model)
-      console.log(
-        `ModelSystem: ${entity.name} Model modified`,
-        JSON.stringify(model.asset)
-      )
+      // console.log(
+      //   `ModelSystem: ${entity.name} Model modified`,
+      //   JSON.stringify(model.asset)
+      // )
       const mesh = entity.get(ModelMesh)?.value
       if (mesh) {
         mesh.parent.remove(mesh)
@@ -44,7 +44,7 @@ export class ModelSystem extends System {
       this.build(entity)
     })
     this.queries.removedObj.forEach(entity => {
-      console.log(`ModelSystem: ${entity.name} Object3D removed`)
+      // console.log(`ModelSystem: ${entity.name} Object3D removed`)
       const mesh = entity.get(ModelMesh).value
       mesh.parent.remove(mesh)
       mesh.dispose?.()
@@ -53,7 +53,7 @@ export class ModelSystem extends System {
       entity.remove(ModelMesh)
     })
     this.queries.removed.forEach(entity => {
-      console.log(`ModelSystem: ${entity.name} Model removed`)
+      // console.log(`ModelSystem: ${entity.name} Model removed`)
       const mesh = entity.get(ModelMesh).value
       mesh.parent.remove(mesh)
       mesh.dispose?.()
@@ -72,12 +72,12 @@ export class ModelSystem extends System {
       const object3d = entity.get(Object3D).value
       object3d.add(mesh)
       entity.add(ModelMesh, { value: mesh })
-      console.log(`ModelSystem: ${entity.name} has no asset, using placeholder`)
+      // console.log(`ModelSystem: ${entity.name} has no asset, using placeholder`)
       return
     }
     const id = ++ids
     entity.add(ModelLoading, { id })
-    console.log(`ModelSystem: loading id:${id}`)
+    // console.log(`ModelSystem: loading id:${id}`)
     let mesh
     try {
       mesh = await this.presentation.load(asset.url)
@@ -86,16 +86,16 @@ export class ModelSystem extends System {
       return
     }
     const loadingId = entity.get(ModelLoading)?.id
-    console.log(`ModelSystem: post-loading id:${loadingId}`)
+    // console.log(`ModelSystem: post-loading id:${loadingId}`)
     // if the id was changed/removed, exit
     if (loadingId !== id) {
-      console.log(`ModelSystem: cancelled id:${id} (id was removed/changed)`)
+      // console.log(`ModelSystem: cancelled id:${id} (id was removed/changed)`)
       return
     }
     const object3d = entity.get(Object3D)?.value
     // if there is no longer an Object3D to attach the mesh to, exit
     if (!object3d) {
-      console.log('ModelSystem: entity no longer has Object3D, reverting')
+      // console.log('ModelSystem: entity no longer has Object3D, reverting')
       entity.remove(ModelLoading)
       return
     }

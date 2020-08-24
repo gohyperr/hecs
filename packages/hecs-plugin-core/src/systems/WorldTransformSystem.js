@@ -19,14 +19,12 @@ export class WorldTransformSystem extends System {
     this.frame++
     this.queries.new.forEach(entity => {
       entity.add(WorldTransform)
-      console.log(`WorldTransform: added to ${entity.name}`)
     })
     this.queries.active.forEach(entity => {
       this.updateTransform(entity.id)
     })
     this.queries.removed.forEach(entity => {
       entity.remove(WorldTransform)
-      console.log(`WorldTransform: removed from ${entity.name}`)
     })
   }
 

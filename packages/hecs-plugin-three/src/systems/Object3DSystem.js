@@ -28,7 +28,6 @@ export class Object3DSystem extends System {
       this.presentation.scene.add(object3d)
       this.presentation.object3ds.push(object3d)
       entity.add(Object3D, { value: object3d })
-      console.log(`Object3DSystem: ${entity.name} added to scene`)
     })
     this.queries.active.forEach(entity => {
       const object3d = entity.get(Object3D).value
@@ -45,7 +44,6 @@ export class Object3DSystem extends System {
         this.presentation.object3ds.splice(idx, 1)
       }
       entity.remove(Object3D)
-      console.log(`Object3DSystem: ${entity.name} removed`)
     })
   }
 }

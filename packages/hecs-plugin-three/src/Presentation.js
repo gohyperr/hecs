@@ -56,7 +56,6 @@ export class Presentation {
   }
 
   resize() {
-    console.log('Presentation: viewport resized')
     this.updateSize()
     this.camera.aspect = this.size.width / this.size.height
     this.camera.updateProjectionMatrix()
