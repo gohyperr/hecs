@@ -136,7 +136,7 @@ export class Entity {
     const data = {
       id: this.id,
       name: this.name,
-      meta: this.meta,
+      meta: { ...this.meta },
     }
     this.components.forEach(component => {
       if (component.constructor.__proto__ === Component) {
