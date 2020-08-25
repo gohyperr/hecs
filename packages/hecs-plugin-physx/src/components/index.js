@@ -1,1 +1,7 @@
-export { Foo } from './Foo'
+export { Collider } from './Collider'
+export { ColliderBody } from './ColliderBody'
+export { ColliderRef } from './ColliderRef'
+export { FixedJoint } from './FixedJoint'
+export { FixedJointRef } from './FixedJointRef'
+export { RigidBody } from './RigidBody'
+export { RigidBodyRef } from './RigidBodyRef'

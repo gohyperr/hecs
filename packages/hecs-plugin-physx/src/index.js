@@ -1,9 +1,13 @@
+import { createPlugin } from 'hecs'
+
 import * as Components from './components'
 import * as Systems from './systems'
-import { createPlugin } from 'hecs'
+import { Physics } from './Physics'
 
 export * from './types'
 export * from './components'
+
+export { Components }
 
 // convert Components into an array
 const components = []
@@ -18,7 +22,15 @@ for (const key in Systems) {
 }
 
 export default createPlugin({
-  name: 'hecs-plugin-core',
+  name: 'hecs-plugin-physx',
   systems,
   components,
+  decorate(world) {
+    if (!PhysX) {
+      throw new Error(
+        'hecs-plugin-physx: PhysX should be loaded and available globally under "PhysX"'
+      )
+    }
+    world.physics = new Physics(world)
+  },
 })
