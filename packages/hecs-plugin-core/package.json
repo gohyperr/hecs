@@ -1,6 +1,6 @@
 {
   "name": "hecs-plugin-core",
-  "version": "0.7.2",
+  "version": "0.8.0",
   "main": "dist/hecs-plugin-core.js",
   "scripts": {
     "start": "webpack --watch",
@@ -10,7 +10,7 @@
     "prepublishOnly": "yarn build"
   },
   "peerDependencies": {
-    "hecs": "^0.7.2"
+    "hecs": "^0.8.0"
   },
   "devDependencies": {
     "@babel/core": "^7.8.3",
@@ -20,7 +20,7 @@
     "babel-loader": "^8.0.6",
     "clean-webpack-plugin": "^3.0.0",
     "edit-json-file": "^1.4.1",
-    "hecs": "^0.7.2",
+    "hecs": "^0.8.0",
     "jest": "^26.1.0",
     "webpack": "^4.41.5",
     "webpack-cli": "^3.3.10"
