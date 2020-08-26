@@ -118,10 +118,10 @@ Describes a fixed joint that should be attached to another entity.
 Field|Type|Default|Description
 ---|---|---|---
 entity|String|''|The entity to attach the fixed joint to. If unset, the joint is attached to world space.
-breakForce|Number|0|The force needed to break the joint. Zero, is unbreakable.
+breakForce|Number|0|The force needed to break the joint. Zero is unbreakable.
 breakTorque|Number|0|The torque needed to break the joint. Zero is unbreakable.
 
-Notes: Internally this plugin looks for a FixedJoint component, constructs the actual joint and adds it as a FixedJointRef component. If you are adding your own functionality that depends on a fixed joint it is better to use the actual ref to determine it's existence.
+Notes: Internally this plugin looks for a FixedJoint component, constructs the actual joint and adds it as a FixedJointRef component. When a fixed joint breaks, the FixedJoint and FixedJointRef components will be removed automatically. If you are adding your own functionality that depends on a fixed joint it is better to use the actual ref to determine it's existence.
 
 
 ```js

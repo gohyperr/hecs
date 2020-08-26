@@ -1,4 +1,5 @@
 import { LayerManager } from './LayerManager'
+import { FixedJointBroke } from './components'
 
 let version
 let allocator
@@ -14,15 +15,19 @@ export class Physics {
     this.defaultErrorCallback = defaultErrorCallback
     this.foundation = foundation
     const tolerances = new PhysX.PxTolerancesScale()
-    const triggerCallback = {
-      onContactBegin: () => {},
-      onContactEnd: () => {},
-      onContactPersist: () => {},
-      onTriggerBegin: () => {},
-      onTriggerEnd: () => {},
-    }
     const physxSimulationCallbackInstance = PhysX.PxSimulationEventCallback.implement(
-      triggerCallback
+      {
+        onConstraintBreak: (actor0, actor1) => {
+          const entityId = this.entityIdByActor.get(actor0.$$.ptr)
+          const entity = world.entities.getById(entityId)
+          entity.add(FixedJointBroke)
+        },
+        onContactBegin: () => {},
+        onContactEnd: () => {},
+        onContactPersist: () => {},
+        onTriggerBegin: () => {},
+        onTriggerEnd: () => {},
+      }
     )
     this.physics = PhysX.PxCreatePhysics(
       version,
@@ -38,6 +43,7 @@ export class Physics {
       physxSimulationCallbackInstance
     )
     this.scene = this.physics.createScene(sceneDesc)
+    this.entityIdByActor = new Map()
 
     // layer groups and masks
     this.layers = new LayerManager()
@@ -96,6 +102,7 @@ export class Physics {
   }
 
   setPassive(passive) {
+    this.world.systems.getByName('FixedJointSystem').active = !passive
     this.world.systems.getByName('ColliderSystem').active = !passive
     this.world.systems.getByName('PhysicsSystem').active = !passive
     this.world.systems.getByName('RigidBodySystem').active = !passive

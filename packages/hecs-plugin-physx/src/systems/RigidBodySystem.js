@@ -12,7 +12,7 @@ export class RigidBodySystem extends System {
   }
 
   update() {
-    const { scene } = this.world.physics
+    const { scene, entityIdByActor } = this.world.physics
 
     // create RigidBodyRef from spec
     this.queries.added.forEach(entity => {
@@ -24,6 +24,7 @@ export class RigidBodySystem extends System {
       const spec = entity.get(RigidBody)
       const body = entity.get(RigidBodyRef).value
       scene.removeActor(body, null)
+      entityIdByActor.delete(body.$$.ptr)
 
       // @note We cant delete the reference because ColliderSystem
       // needs to detach its shape from this.
@@ -36,6 +37,7 @@ export class RigidBodySystem extends System {
     this.queries.removed.forEach(entity => {
       const body = entity.get(RigidBodyRef).value
       scene.removeActor(body, null)
+      entityIdByActor.delete(body.$$.ptr)
 
       // @note We cant delete the reference because ColliderSystem
       // needs to detach its shape from this.
@@ -46,7 +48,7 @@ export class RigidBodySystem extends System {
   }
 
   build(entity) {
-    const { physics, scene } = this.world.physics
+    const { physics, scene, entityIdByActor } = this.world.physics
     const spec = entity.get(RigidBody)
     const transform = entity.get(Transform)
 
@@ -74,6 +76,7 @@ export class RigidBodySystem extends System {
     }
 
     entity.add(RigidBodyRef, { value: body })
+    entityIdByActor.set(body.$$.ptr, entity.id)
     scene.addActor(body, null)
   }
 }
