@@ -40,26 +40,32 @@ export class Physics {
     this.scene = this.physics.createScene(sceneDesc)
 
     // layer groups and masks
-    const layers = new LayerManager()
-    layers.create('Default')
-    layers.create('PlayerController')
-    layers.create('PlayerAttached')
-    layers.setCollision(layers.PlayerController, layers.PlayerAttached, false)
-    this.layers = layers
+    this.layers = new LayerManager()
 
     this.controllerManager = PhysX.PxCreateControllerManager(this.scene, null)
 
+    // By default all query filters (sweep, raycast etc) will hit all shapes
+    // Override this function to implement your own
+    this.queryPreFilterFn = function (filterData, shape, actor) {
+      // Example for a miss:
+      // Layer.value is the bit for that layer
+      // shapeFilterData.word1 contains the mask of the Collider layer
+      // let shapeFilterData = shape.getQueryFilterData()
+      // if (!(this.layers.get(4).value & shapeFilterData.word1)) {
+      //   return PhysX.PxQueryHitType.eNONE
+      // }
+      return PhysX.PxQueryHitType.eTOUCH
+    }
+
     const controllerQueryCallback = PhysX.PxQueryFilterCallback.implement({
       postFilter: (filterData, hit) => {
-        console.warn('Not expecting this postFilter call')
+        // @todo this isnt being called (?) and requires thought to determine
+        // what it should return if it is
+        console.warn('TODO: Not expecting this postFilter call')
         return PhysX.PxQueryHitType.eTOUCH
       },
       preFilter: (filterData, shape, actor) => {
-        let shapeFilterData = shape.getQueryFilterData()
-        if (!(this.layers.PlayerController.value & shapeFilterData.word1)) {
-          return PhysX.PxQueryHitType.eNONE
-        }
-        return PhysX.PxQueryHitType.eTOUCH
+        return this.queryPreFilterFn(filterData, shape, actor)
       },
     })
 

@@ -42,6 +42,7 @@ export class Collider extends Component {
       type: NumberType,
       editor: {
         label: 'Layer',
+        input: 'Layer',
       },
     },
   }

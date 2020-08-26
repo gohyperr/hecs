@@ -45,6 +45,19 @@ A world instance with this plugin installed can now use all of the features belo
 
 This prop is available if you want to extends the plugin. It contains all the shared parts for simulation such as the scene, layers and cooking.
 
+### World.physics.layers
+
+Use this to specify which layers collide with each other. Layers are set on each Collider component (see below). There are 7 layers available and they all collide with each other by default.
+
+```js
+const { layers } = world.physics
+const Layers = {
+  DEFAULT: 0,
+  GHOST: 1,
+}
+layers.setCollision(Layers.DEFAULT, Layers.GHOST, false)
+```
+
 ### World.physics.setPassive(Boolean)
 
 In certain cases such as an editor, you may want to register the plugin and its components but not have the physics simulated. Setting passive to false will disable the systems that build rigid bodies, collider shapes, and simulate physics.

@@ -85,7 +85,7 @@ export class ColliderSystem extends System {
     )
 
     let shape = physics.createShape(geometry, material, false, flags)
-    let layer = layers[spec.layer] || layers.Default
+    let layer = layers.get(spec.layer) || layers.get(0)
 
     shape.setSimulationFilterData(layer.data)
     shape.setQueryFilterData(layer.data)
