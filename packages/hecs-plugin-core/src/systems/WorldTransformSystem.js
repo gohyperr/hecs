@@ -30,7 +30,6 @@ export class WorldTransformSystem extends System {
 
   updateTransform(entityId) {
     const entity = this.world.entities.getById(entityId)
-
     const transform = entity.get(Transform)
     const world = entity.get(WorldTransform)
     const parentId = entity.get(Parent)?.id

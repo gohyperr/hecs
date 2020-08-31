@@ -1,3 +1,5 @@
+export { CharacterController } from './CharacterController'
+export { CharacterControllerRef } from './CharacterControllerRef'
 export { Collider } from './Collider'
 export { ColliderBody } from './ColliderBody'
 export { ColliderRef } from './ColliderRef'

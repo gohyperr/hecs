@@ -102,8 +102,9 @@ export class Physics {
   }
 
   setPassive(passive) {
-    this.world.systems.getByName('FixedJointSystem').active = !passive
+    this.world.systems.getByName('CharacterControllerSystem').active = !passive
     this.world.systems.getByName('ColliderSystem').active = !passive
+    this.world.systems.getByName('FixedJointSystem').active = !passive
     this.world.systems.getByName('PhysicsSystem').active = !passive
     this.world.systems.getByName('RigidBodySystem').active = !passive
   }
