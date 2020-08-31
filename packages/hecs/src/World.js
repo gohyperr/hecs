@@ -54,7 +54,7 @@ export class World {
 
   reset() {
     this.entities.reset()
-    this.update()
+    this.update((1 / 60) * 2)
     this.systems.reset()
   }
 
