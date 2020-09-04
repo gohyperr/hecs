@@ -1,6 +1,6 @@
 {
   "name": "hecs-plugin-three",
-  "version": "0.10.0",
+  "version": "0.11.0",
   "main": "dist/hecs-plugin-three.js",
   "scripts": {
     "start": "webpack --watch",
@@ -10,8 +10,8 @@
     "prepublishOnly": "yarn build"
   },
   "peerDependencies": {
-    "hecs": "^0.10.0",
-    "hecs-plugin-core": "^0.10.0",
+    "hecs": "^0.11.0",
+    "hecs-plugin-core": "^0.11.0",
     "three": "^0.119.1"
   },
   "devDependencies": {
@@ -22,8 +22,8 @@
     "babel-loader": "^8.0.6",
     "clean-webpack-plugin": "^3.0.0",
     "edit-json-file": "^1.4.1",
-    "hecs": "^0.10.0",
-    "hecs-plugin-core": "^0.10.0",
+    "hecs": "^0.11.0",
+    "hecs-plugin-core": "^0.11.0",
     "jest": "^26.1.0",
     "terser-webpack-plugin": "^4.1.0",
     "three": "^0.119.1",
