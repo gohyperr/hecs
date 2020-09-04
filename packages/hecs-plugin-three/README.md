@@ -40,6 +40,11 @@ This is the three.js scene used internally. It's available if you need it but co
 
 Configuring this with a DOMElement will attach the renderer and start rendering your scenes to it. Interally it uses ResizeObserver to watch for resize and automatically updates the camera and renderer perspectives. When no viewport is defined nothing will be rendered and some systems will run passively. Can be unset with `null`
 
+### World.presentation.takePhoto(width, height)
+
+Allows you to take a photo of the scene at any arbitrary size, from the point of view of the camera. The returned value is a base64 string representing the image. Internally this uses CanvasElement.toDataURL().
+This is useful for editors to generate thumbnails of a scene, but could also be used during a running simulation to take photos.
+
 ### Camera (Component)
 
 Adding this component to an entity controls where the camera is in the scene. This component is a singleton so adding it to another entity will remove it from any previous entity.

@@ -1,5 +1,6 @@
 import * as THREE from 'three'
 import { Loader } from './Loader'
+import { Capture } from './Capture'
 
 let loader
 
@@ -18,6 +19,7 @@ export class Presentation {
       1000
     )
     this.resizeObserver = new ResizeObserver(this.onResize.bind(this))
+    this.capture = new Capture(this)
     if (!loader) loader = new Loader()
   }
 
@@ -60,6 +62,11 @@ export class Presentation {
     this.camera.aspect = this.size.width / this.size.height
     this.camera.updateProjectionMatrix()
     this.renderer.setSize(this.size.width, this.size.height)
+  }
+
+  takePhoto(width, height) {
+    // this method is just a proxy method for simplicity
+    return this.capture.takePhoto(width, height)
   }
 
   createScene() {
