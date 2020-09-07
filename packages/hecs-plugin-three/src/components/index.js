@@ -1,5 +1,8 @@
 export { Camera } from './Camera'
 export { CameraAttached } from './CameraAttached'
+export { Image } from './Image'
+export { ImageLoader } from './ImageLoader'
+export { ImageMesh } from './ImageMesh'
 export { Model } from './Model'
 export { ModelLoading } from './ModelLoading'
 export { ModelMesh } from './ModelMesh'

@@ -127,3 +127,31 @@ Field|Type|Default|Description
 value|Object3D|new Object3D()|The object3d
 
 Advanced: You can use this container to add and remove your own meshes without needing to worry about scene hierarchy. See how this can be done in the ModelSystem and ShapeSystem.
+
+### Image (Component)
+
+Adding this component to an entity will render an image at its location
+
+Field|Type|Default|Description
+---|---|---|---
+asset|Asset|new Asset()|The image asset to render
+width|Number|1|The width of the plane the image is displayed on.
+height|Number|1|The height of the plane the image is displayed on.
+fit|String|'CONTAIN'|The fitting mode. `CONTAIN` means the image will be made to fit inside of the width and height props. `COVER` means the image will be resized to ensure it covers all width and height surface, cropping the overflow.
+
+Requires: `Transform`
+
+
+```js
+import { Transform, Asset } from 'hecs-plugins-core'
+import { Image } from 'hecs-plugins-three'
+
+entity
+  .add(Transform)
+  .add(Image, { 
+    asset: new Asset('billboard-sign.png'),
+    width: 6,
+    height: 3,
+    fit: 'COVER',
+  })
+```

@@ -3,6 +3,7 @@ import { Loader } from './Loader'
 import { Capture } from './Capture'
 
 let loader
+let textureLoader
 
 export class Presentation {
   constructor(world) {
@@ -21,6 +22,7 @@ export class Presentation {
     this.resizeObserver = new ResizeObserver(this.onResize.bind(this))
     this.capture = new Capture(this)
     if (!loader) loader = new Loader()
+    if (!textureLoader) textureLoader = new THREE.TextureLoader()
   }
 
   setViewport(viewport) {
@@ -46,6 +48,12 @@ export class Presentation {
 
   load(url) {
     return loader.load(url)
+  }
+
+  async loadTexture(url) {
+    return new Promise((resolve, reject) => {
+      textureLoader.load(url, resolve, null, reject)
+    })
   }
 
   onResize() {
