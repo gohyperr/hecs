@@ -155,3 +155,49 @@ entity
     fit: 'COVER',
   })
 ```
+
+### LookAt (Component)
+
+An entity with this component will have its transform constantly updated to look at it's target
+
+Field|Type|Default|Description
+---|---|---|---
+entity|String|''|The target entity id
+limit|String|'NONE'|Limits the axis of rotation. `NONE` means all axis will be rotated, `Y_AXIS` means only Y will rotate. You can also use `X_AXIS` and `Z_AXIS`.
+
+Requires: `Transform`
+
+
+```js
+import { Transform, Asset } from 'hecs-plugins-core'
+import { LookAt, Image } from 'hecs-plugins-three'
+
+entity
+  .add(Transform)
+  .add(Image, { asset: new Asset('billboard-sign.png') })
+  .add(LookAt, { 
+    entity: '0:1',
+    limit: 'Y_AXIS'
+  })
+```
+
+### LookAtCamera (Component)
+
+Works the same as the `LookAt` component but always targets the camera.
+
+Field|Type|Default|Description
+---|---|---|---
+limit|String|'NONE'|Limits the axis of rotation. `NONE` means all axis will be rotated, `Y_AXIS` means only Y will rotate. You can also use `X_AXIS` and `Z_AXIS`.
+
+Requires: `Transform`
+
+
+```js
+import { Transform, Asset } from 'hecs-plugins-core'
+import { LookAtCamera, Image } from 'hecs-plugins-three'
+
+entity
+  .add(Transform)
+  .add(Image, { asset: new Asset('billboard-sign.png') })
+  .add(LookAtCamera, { limit: 'Y_AXIS' })
+```
