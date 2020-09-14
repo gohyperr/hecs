@@ -41,7 +41,7 @@ describe('types', () => {
       const component = entity.get(BaseTypes)
       expect(component.boolean).toBe(false)
       expect(component.number).toBe(0)
-      expect(component.text).toBe('')
+      expect(component.string).toBe('')
       expect(component.json).toBe(null)
     })
 
@@ -52,7 +52,7 @@ describe('types', () => {
       expect(data.BaseTypes).toBeDefined()
       expect(data.BaseTypes.boolean).toBe(false)
       expect(data.BaseTypes.number).toBe(0)
-      expect(data.BaseTypes.text).toBe('')
+      expect(data.BaseTypes.string).toBe('')
       expect(data.BaseTypes.json).toBe(null)
       entity.remove(BaseTypes)
 
@@ -62,7 +62,7 @@ describe('types', () => {
       const component = entity2.get(BaseTypes)
       expect(component.boolean).toBe(false)
       expect(component.number).toBe(0)
-      expect(component.text).toBe('')
+      expect(component.string).toBe('')
       expect(component.json).toBe(null)
     })
 
@@ -70,13 +70,13 @@ describe('types', () => {
       entity.add(BaseTypes, {
         boolean: true,
         number: 5,
-        text: 'Hello',
+        string: 'Hello',
         json: { bar: 'baz' },
       })
       const component = entity.get(BaseTypes)
       expect(component.boolean).toBe(true)
       expect(component.number).toBe(5)
-      expect(component.text).toBe('Hello')
+      expect(component.string).toBe('Hello')
       expect(component.json.bar).toBe('baz')
     })
 
@@ -87,7 +87,7 @@ describe('types', () => {
       expect(data.BaseTypes).toBeDefined()
       expect(data.BaseTypes.boolean).toBe(true)
       expect(data.BaseTypes.number).toBe(5)
-      expect(data.BaseTypes.text).toBe('Hello')
+      expect(data.BaseTypes.string).toBe('Hello')
       expect(data.BaseTypes.json).toBe(JSON.stringify({ bar: 'baz' }))
       entity.remove(BaseTypes)
 
@@ -97,7 +97,7 @@ describe('types', () => {
       const component = entity2.get(BaseTypes)
       expect(component.boolean).toBe(true)
       expect(component.number).toBe(5)
-      expect(component.text).toBe('Hello')
+      expect(component.string).toBe('Hello')
       expect(component.json.bar).toBe('baz')
     })
   })
@@ -108,7 +108,7 @@ describe('types', () => {
       const component = entity.get(ConfiguredTypes)
       expect(component.boolean).toBe(true)
       expect(component.number).toBe(5)
-      expect(component.text).toBe('Hello')
+      expect(component.string).toBe('Hello')
       expect(component.json.foo).toBe('bar')
       entity.remove(ConfiguredTypes)
     })
@@ -117,13 +117,13 @@ describe('types', () => {
       entity.add(ConfiguredTypes, {
         boolean: false,
         number: 2,
-        text: 'Bye',
+        string: 'Bye',
         json: { bar: 'baz' },
       })
       const component = entity.get(ConfiguredTypes)
       expect(component.boolean).toBe(false)
       expect(component.number).toBe(2)
-      expect(component.text).toBe('Bye')
+      expect(component.string).toBe('Bye')
       expect(component.json.bar).toBe('baz')
       entity.remove(ConfiguredTypes)
     })
