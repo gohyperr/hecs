@@ -1,6 +1,6 @@
 import * as THREE from 'three'
 import { System, Groups } from 'hecs'
-import { WorldTransform, Transform, Parent } from 'hecs-plugin-core'
+import { WorldTransform, Transform } from 'hecs-plugin-core'
 
 import { IS_BROWSER } from '../utils'
 import { LookAt, LookAtCamera } from '../components'
@@ -66,11 +66,8 @@ export class LookAtSystem extends System {
     m1.lookAt(targetPosition, position, up)
     transform.rotation.setFromRotationMatrix(m1)
 
-    if (entity.has(Parent)) {
-      const parentId = entity.get(Parent)?.id
-      if (!parentId) return
-      const parent = this.world.entities.getById(parentId)
-      if (!parent) return
+    const parent = entity.getParent()
+    if (parent) {
       m1.extractRotation(parent.get(WorldTransform).matrix)
       q1.setFromRotationMatrix(m1)
       transform.rotation.premultiply(q1.inverse())

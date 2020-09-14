@@ -120,7 +120,7 @@ entity
 
 ### Object3D (Component)
 
-All entities with a `Transform` are given an `Object3D` component which is added to the scene at the correct hierarchical position (eg when using a `Parent` component). This container is used internally for all `Model` and `Shape` meshes that are created.
+All entities with a `Transform` are given an `Object3D` component which will be displayed in the scene in the correct hierarchical position. This container is used internally for all `Model` and `Shape` meshes that are created.
 
 Field|Type|Default|Description
 ---|---|---|---

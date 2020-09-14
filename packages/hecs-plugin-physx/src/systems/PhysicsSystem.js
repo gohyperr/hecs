@@ -2,7 +2,6 @@ import { System, Groups } from 'hecs'
 import {
   Transform,
   WorldTransform,
-  Parent,
   Matrix4,
   Vector3,
   Quaternion,
@@ -64,7 +63,7 @@ export class PhysicsSystem extends System {
     scene.fetchResults(true)
 
     this.queries.default.forEach(entity => {
-      const parentId = entity.get(Parent)?.id
+      const parent = entity.getParent()
       const local = entity.get(Transform)
       const world = entity.get(WorldTransform)
       const spec = entity.get(RigidBody)
@@ -73,7 +72,7 @@ export class PhysicsSystem extends System {
       if (spec.kind === 'DYNAMIC') {
         const pose = body.getGlobalPose()
 
-        if (!parentId) {
+        if (!parent) {
           local.position.copy(pose.translation)
           local.rotation.copy(pose.rotation)
         } else {

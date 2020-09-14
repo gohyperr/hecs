@@ -1,5 +1,5 @@
 import { System, Groups, Not, Modified } from 'hecs'
-import { Parent, Transform } from 'hecs-plugin-core'
+import { Transform } from 'hecs-plugin-core'
 import {
   RigidBodyRef,
   Collider,
@@ -124,21 +124,14 @@ export class ColliderSystem extends System {
     // using local offset transforms
     if (!body) {
       let cursor = 0
-      let parentId = entity.get(Parent)?.id
-      while (parentId) {
-        const parent = this.world.entities.getById(parentId)
-        if (!parent) {
-          console.log(
-            `ColliderSystem: ${entity.name} has parentId but no parent found, waiting...`
-          )
-          break
-        }
+      let parent = entity.getParent()
+      while (parent) {
         body = parent.get(RigidBodyRef)?.value
         if (body) {
           // console.log(`ColliderSystem: ${entity.name} found body`)
           break
         }
-        parentId = parent.get(Parent)?.id
+        parent = parent.getParent()
         cursor++
         if (cursor >= 10) {
           console.log(`ColliderSystem: ${entity.name} cursor limit reached`)

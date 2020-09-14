@@ -1,5 +1,5 @@
 import { System, Not, Groups } from 'hecs'
-import { WorldTransform, Transform, Parent } from '../components'
+import { WorldTransform, Transform } from '../components'
 import { Matrix4 } from '../Matrix4'
 
 export class WorldTransformSystem extends System {
@@ -21,18 +21,17 @@ export class WorldTransformSystem extends System {
       entity.add(WorldTransform)
     })
     this.queries.active.forEach(entity => {
-      this.updateTransform(entity.id)
+      this.updateTransform(entity)
     })
     this.queries.removed.forEach(entity => {
       entity.remove(WorldTransform)
     })
   }
 
-  updateTransform(entityId) {
-    const entity = this.world.entities.getById(entityId)
+  updateTransform(entity) {
     const transform = entity.get(Transform)
     const world = entity.get(WorldTransform)
-    const parentId = entity.get(Parent)?.id
+    const parent = entity.getParent()
 
     if (world.frame === this.frame) {
       return world
@@ -47,8 +46,8 @@ export class WorldTransformSystem extends System {
       transform.scale
     )
 
-    if (parentId) {
-      const parentWorld = this.updateTransform(parentId)
+    if (parent) {
+      const parentWorld = this.updateTransform(parent)
       world.matrix.multiplyMatrices(parentWorld.matrix, transform.matrix)
     } else {
       world.matrix.copy(transform.matrix)

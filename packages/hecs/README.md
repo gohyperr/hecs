@@ -102,6 +102,23 @@ world.update()
 const basketball = world.entities.create()
 ```
 
+### Entity Hierarchy
+
+```js
+const parent = world.entities.create()
+const child = world.entities.create()
+
+child.setParent(parent) // use `null` to unset
+parent.traverse(entity => {
+  // called for this and all descendants
+})
+child.traverseAscendants(entity => {
+  // called for all ascendants
+})
+parent.getChildren() // [child]
+child.getParent() // parent
+```
+
 ### Adding components
 
 ```js

@@ -53,4 +53,32 @@ describe('hierarchy', () => {
       expect(child.name).toBe(path.shift().name)
     })
   })
+
+  test('serialisation/deserialisation', () => {
+    let parent = world.entities.create().activate()
+    let child = world.entities.create().activate()
+    child.setParent(parent)
+
+    const parentJSON = parent.toJSON()
+    const childJSON = child.toJSON()
+
+    expect(parentJSON.parent).toBe(null)
+    expect(parentJSON.children.length).toBe(1)
+    expect(parentJSON.children[0]).toBe(child.id)
+    expect(childJSON.parent).toBe(parent.id)
+    expect(childJSON.children.length).toBe(0)
+
+    parent.destroy()
+    child.destroy()
+
+    parent = world.entities.create().fromJSON(parentJSON).activate()
+    child = world.entities.create().fromJSON(childJSON).activate()
+
+    expect(parent.getParent()).toBe(null)
+    expect(parent.getChildren().length).toBe(1)
+    expect(parent.getChildren()[0]).toBe(child)
+
+    expect(child.getParent()).toBe(parent)
+    expect(child.getChildren().length).toBe(0)
+  })
 })

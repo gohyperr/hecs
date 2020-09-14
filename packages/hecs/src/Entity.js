@@ -11,6 +11,7 @@ export class Entity {
     this.components = new Map()
     this.parent = null
     this.children = []
+    this.needsBind = false
     this.inactiveComponents = []
     this.archetypeId = world.archetypes.initialId
     this.active = false
@@ -62,9 +63,20 @@ export class Entity {
     return this
   }
 
+  bind() {
+    if (!this.needsBind) return
+    // After deserializing an entity we need to bind
+    // the parent and child ID's to actual entities...
+    this.parent = this.parent ? this.world.entities.getById(this.parent) : null
+    this.children = this.children.map(id => this.world.entities.getById(id))
+    this.needsBind = false
+  }
+
   setParent(entity) {
     // remove current parent (if any)
+    this.bind()
     if (this.parent) {
+      this.parent.bind()
       const idx = this.parent.children.indexOf(this)
       this.parent.children.splice(idx, 1)
       this.parent = null
@@ -72,15 +84,22 @@ export class Entity {
     // add new parent (if any)
     if (entity) {
       this.parent = entity
-      entity.children.push(this)
+      this.parent.children.push(this)
     }
   }
 
   getParent() {
+    this.bind()
     return this.parent
   }
 
+  getChildren() {
+    this.bind()
+    return this.children
+  }
+
   traverse(callback) {
+    this.bind()
     callback(this)
     for (let i = 0; i < this.children.length; i++) {
       this.children[i].traverse(callback)
@@ -88,9 +107,11 @@ export class Entity {
   }
 
   traverseAncestors(callback) {
+    this.bind()
     let parent = this.parent
     while (parent) {
       callback(parent)
+      parent.bind()
       parent = parent.parent
     }
   }
@@ -176,6 +197,8 @@ export class Entity {
     const data = {
       id: this.id,
       name: this.name,
+      parent: this.getParent()?.id || null,
+      children: this.getChildren().map(child => child.id),
       meta: { ...this.meta },
     }
     this.components.forEach(component => {
@@ -189,12 +212,22 @@ export class Entity {
   fromJSON(data) {
     this.id = data.id
     this.name = data.name
+    this.parent = data.parent
+    this.children = data.children
     this.meta = data.meta
     for (const key in data) {
-      if (key === 'id' || key === 'name' || key === 'meta') continue
+      if (
+        key === 'id' ||
+        key === 'name' ||
+        key === 'parent' ||
+        key === 'children' ||
+        key === 'meta'
+      )
+        continue
       const Component = this.world.components.getByName(key)
       this.add(Component, undefined, true).fromJSON(data[key])
     }
+    this.needsBind = true
     return this
   }
 }

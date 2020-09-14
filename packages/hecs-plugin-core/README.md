@@ -32,21 +32,6 @@ A world instance with this plugin installed can now use all of the features belo
 
 ---
 
-### Parent (Component)
-
-Adding this component to an entity signifies it is a child of another entity.
-
-Field|Type|Default|Description
----|---|---|---
-id|String|''|The parent entity ID
-
-Example:
-```js
-import { Parent } from 'hecs-plugin-core'
-
-entity.add(Parent, { id: '2:3' })
-```
-
 ### Transform (Component)
 
 The `Transform` component adds 3D spatial awareness to an entity. The `Transform` component represents the local transform of the entity in respect to its parent (or world coordinates).
@@ -68,8 +53,8 @@ entity.add(Transform, {
 
 ### WorldTransform (Component)
 
-`WorldTransform` has the same properties as the `Transform` component and is automatically added to all entities with a `Transform` component. If the entity has no `Parent` then the `WorldTransform` will be the same as the `Transform`.
-You shouldn't need to be add this manually, it is intended to be used as a read-only source of information you can send to physics/rendering etc.
+`WorldTransform` has the same properties as the `Transform` component and is automatically added to all entities with a `Transform` component. If the entity has no parent then the `WorldTransform` will be the same as the `Transform`.
+You shouldn't need to add this manually, it is intended to be used as a read-only source of information you can send to physics/rendering etc.
 
 Field|Type|Default|Description
 ---|---|---|---
