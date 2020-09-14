@@ -24,7 +24,9 @@ export class Entity {
     }
     const replacing = this.components.has(Component)
     this.components.set(Component, component)
-    if (!replacing) {
+    if (replacing) {
+      component.modified()
+    } else {
       this.Components.push(Component)
       this.world.archetypes.onEntityComponentChange(this, Component, true)
     }
