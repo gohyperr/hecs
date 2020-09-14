@@ -34,4 +34,23 @@ describe('hierarchy', () => {
     expect(parent.active).toBe(false)
     expect(child.active).toBe(false)
   })
+
+  test('traversal', () => {
+    const grandfather = world.entities.create('grandfather').activate()
+    const father = world.entities.create('father').activate()
+    const son = world.entities.create('son').activate()
+    son.setParent(father)
+    father.setParent(grandfather)
+    let path
+
+    path = [father, grandfather]
+    son.traverseAncestors(ancestor => {
+      expect(ancestor.name).toBe(path.shift().name)
+    })
+
+    path = [grandfather, father, son]
+    grandfather.traverse(child => {
+      expect(child.name).toBe(path.shift().name)
+    })
+  })
 })

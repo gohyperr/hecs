@@ -80,6 +80,21 @@ export class Entity {
     return this.parent
   }
 
+  traverse(callback) {
+    callback(this)
+    for (let i = 0; i < this.children.length; i++) {
+      this.children[i].traverse(callback)
+    }
+  }
+
+  traverseAncestors(callback) {
+    let parent = this.parent
+    while (parent) {
+      callback(parent)
+      parent = parent.parent
+    }
+  }
+
   activate() {
     if (this.active) {
       console.warn('Entity: cannot activate as entity is already active')
