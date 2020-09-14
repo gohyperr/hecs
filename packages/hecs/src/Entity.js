@@ -9,6 +9,8 @@ export class Entity {
     this.meta = meta || {}
     this.Components = []
     this.components = new Map()
+    this.parent = null
+    this.children = []
     this.inactiveComponents = []
     this.archetypeId = world.archetypes.initialId
     this.active = false
@@ -58,6 +60,24 @@ export class Entity {
       this.world.archetypes.onEntityInactive(this)
     }
     return this
+  }
+
+  setParent(entity) {
+    // remove current parent (if any)
+    if (this.parent) {
+      const idx = this.parent.children.indexOf(this)
+      this.parent.children.splice(idx, 1)
+      this.parent = null
+    }
+    // add new parent (if any)
+    if (entity) {
+      this.parent = entity
+      entity.children.push(this)
+    }
+  }
+
+  getParent() {
+    return this.parent
   }
 
   activate() {
@@ -130,6 +150,9 @@ export class Entity {
       this.active = false
       this.world.entities.onEntityInactive(this)
       this.world.archetypes.onEntityInactive(this)
+    }
+    for (let i = 0; i < this.children.length; i++) {
+      this.children[i].destroy()
     }
     return this
   }
