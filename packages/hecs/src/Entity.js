@@ -86,6 +86,7 @@ export class Entity {
       this.parent = entity
       this.parent.children.push(this)
     }
+    return this
   }
 
   getParent() {
