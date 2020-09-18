@@ -16,5 +16,6 @@
     "name": "Ash Connell",
     "email": "hello@ashconnell.com"
   },
-  "license": "MIT"
+  "license": "MIT",
+  "version": "0.0.0"
 }
