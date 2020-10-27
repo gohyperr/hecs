@@ -19,10 +19,12 @@ export class EntityManager {
 
   onEntityActive(entity) {
     this.entities.set(entity.id, entity)
+    this.world.emit('entity-active', entity)
   }
 
   onEntityInactive(entity) {
     this.entities.delete(entity.id)
+    this.world.emit('entity-inactive', entity)
   }
 
   reset() {

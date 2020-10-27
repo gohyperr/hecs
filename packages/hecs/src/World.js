@@ -1,3 +1,4 @@
+import EventEmitter from 'eventemitter3'
 import { SystemManager } from './SystemManager'
 import { QueryManager } from './QueryManager'
 import { ArchetypeManager } from './ArchetypeManager'
@@ -5,8 +6,9 @@ import { EntityManager } from './EntityManager'
 import { ComponentManager } from './ComponentManager'
 import { createPlugin } from './createPlugin'
 
-export class World {
+export class World extends EventEmitter {
   constructor(options = {}) {
+    super()
     this.id = 0
     this.version = 0
     this.plugins = new Map()

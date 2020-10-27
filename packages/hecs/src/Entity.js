@@ -188,6 +188,7 @@ export class Entity {
       this.world.entities.onEntityInactive(this)
       this.world.archetypes.onEntityInactive(this)
     }
+    this.bind()
     for (let i = 0; i < this.children.length; i++) {
       this.children[i].destroy()
     }

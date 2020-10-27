@@ -40,5 +40,8 @@
   },
   "homepage": "https://github.com/gohyperr/hecs/tree/master/packages/hecs",
   "bugs": "https://github.com/gohyperr/hecs/issues",
-  "license": "MIT"
+  "license": "MIT",
+  "dependencies": {
+    "eventemitter3": "^4.0.7"
+  }
 }
