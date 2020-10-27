@@ -1,4 +1,5 @@
 import { createPlugin } from 'hecs'
+import CorePlugin from 'hecs-plugin-core'
 
 import * as Components from './components'
 import * as Systems from './systems'
@@ -23,6 +24,7 @@ for (const key in Systems) {
 
 export default createPlugin({
   name: 'hecs-plugin-three',
+  plugins: [CorePlugin],
   systems,
   components,
   decorate(world) {
