@@ -4,6 +4,7 @@ import CorePlugin from 'hecs-plugin-core'
 import * as Components from './components'
 import * as Systems from './systems'
 import { Presentation } from './Presentation'
+import { IS_BROWSER } from './utils'
 
 export * from './types'
 export * from './components'
@@ -28,6 +29,8 @@ export default createPlugin({
   systems,
   components,
   decorate(world) {
-    world.presentation = new Presentation(world)
+    if (IS_BROWSER) {
+      world.presentation = new Presentation(world)
+    }
   },
 })

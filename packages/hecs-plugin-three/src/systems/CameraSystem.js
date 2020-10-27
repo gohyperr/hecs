@@ -1,7 +1,9 @@
 import { System, Not, Groups } from 'hecs'
 import { Object3D, Camera, CameraAttached } from '../components'
+import { IS_BROWSER } from '../utils'
 
 export class CameraSystem extends System {
+  active = IS_BROWSER
   order = Groups.Initialization
 
   static queries = {
@@ -10,7 +12,7 @@ export class CameraSystem extends System {
   }
 
   init({ presentation }) {
-    this.camera = presentation.camera
+    this.camera = presentation?.camera
   }
 
   update() {
