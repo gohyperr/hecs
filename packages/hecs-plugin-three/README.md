@@ -74,8 +74,8 @@ Advanced: You can determine whether a model is still loading by looking for a `M
 
 
 ```js
-import { Transform } from 'hecs-plugin-core'
-import { Asset, Model } from 'hecs-plugin-three'
+import { Transform, Asset } from 'hecs-plugin-core'
+import { Model } from 'hecs-plugin-three'
 
 entity
   .add(Transform)
