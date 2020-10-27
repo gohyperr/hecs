@@ -52,8 +52,8 @@ Adding this component to an entity controls where the camera is in the scene. Th
 Requires: `Transform`
 
 ```js
-import { Transform } from 'hecs-plugins-core'
-import { Camera } from 'hecs-plugins-three'
+import { Transform } from 'hecs-plugin-core'
+import { Camera } from 'hecs-plugin-three'
 
 entity
   .add(Transform)
@@ -74,8 +74,8 @@ Advanced: You can determine whether a model is still loading by looking for a `M
 
 
 ```js
-import { Transform } from 'hecs-plugins-core'
-import { Asset, Model } from 'hecs-plugins-three'
+import { Transform } from 'hecs-plugin-core'
+import { Asset, Model } from 'hecs-plugin-three'
 
 entity
   .add(Transform)
@@ -106,8 +106,8 @@ Advanced: A `ShapeMesh` component is available to access the actual three.js mes
 
 
 ```js
-import { Transform, Vector3 } from 'hecs-plugins-core'
-import { Shape } from 'hecs-plugins-three'
+import { Transform, Vector3 } from 'hecs-plugin-core'
+import { Shape } from 'hecs-plugin-three'
 
 entity
   .add(Transform)
@@ -143,8 +143,8 @@ Requires: `Transform`
 
 
 ```js
-import { Transform, Asset } from 'hecs-plugins-core'
-import { Image } from 'hecs-plugins-three'
+import { Transform, Asset } from 'hecs-plugin-core'
+import { Image } from 'hecs-plugin-three'
 
 entity
   .add(Transform)
@@ -169,8 +169,8 @@ Requires: `Transform`
 
 
 ```js
-import { Transform, Asset } from 'hecs-plugins-core'
-import { LookAt, Image } from 'hecs-plugins-three'
+import { Transform, Asset } from 'hecs-plugin-core'
+import { LookAt, Image } from 'hecs-plugin-three'
 
 entity
   .add(Transform)
@@ -193,8 +193,8 @@ Requires: `Transform`
 
 
 ```js
-import { Transform, Asset } from 'hecs-plugins-core'
-import { LookAtCamera, Image } from 'hecs-plugins-three'
+import { Transform, Asset } from 'hecs-plugin-core'
+import { LookAtCamera, Image } from 'hecs-plugin-three'
 
 entity
   .add(Transform)
