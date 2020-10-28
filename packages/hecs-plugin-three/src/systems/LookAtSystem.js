@@ -10,6 +10,7 @@ const q1 = new THREE.Quaternion()
 const targetPosition = new THREE.Vector3()
 const position = new THREE.Vector3()
 const up = new THREE.Vector3(0, 1, 0)
+const delta = new THREE.Vector3()
 
 export class LookAtSystem extends System {
   active = IS_BROWSER
@@ -22,9 +23,13 @@ export class LookAtSystem extends System {
 
   init({ presentation }) {
     this.presentation = presentation
+    this.cameraId = null
   }
 
   update() {
+    // Keep cameraId around because we access it for each entity
+    this.cameraId = this.presentation.camera.parent?.userData.entityId
+
     this.queries.targeted.forEach(entity => {
       const spec = entity.get(LookAt)
       this.lookAt(entity, spec.entity, spec.limit)
@@ -32,8 +37,7 @@ export class LookAtSystem extends System {
 
     this.queries.cameras.forEach(entity => {
       const { limit } = entity.get(LookAtCamera)
-      const targetId = this.presentation.camera.parent?.userData.entityId
-      this.lookAt(entity, targetId, limit)
+      this.lookAt(entity, cameraId, limit)
     })
   }
 
@@ -61,6 +65,12 @@ export class LookAtSystem extends System {
       targetPosition.x = targetWorld.position.x
       targetPosition.y = targetWorld.position.y
       targetPosition.z = position.z
+    }
+
+    // Camera looks down negative z-axis, so when it is the thing doing the looking, flip it around
+    if (entity.id === this.cameraId) {
+      delta.copy(targetPosition).sub(position).multiplyScalar(2)
+      targetPosition.sub(delta)
     }
 
     m1.lookAt(targetPosition, position, up)
