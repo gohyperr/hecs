@@ -1,6 +1,6 @@
 {
   "name": "hecs-plugin-core",
-  "version": "0.16.0",
+  "version": "0.17.0",
   "main": "dist/hecs-plugin-core.js",
   "scripts": {
     "start": "webpack --watch",
@@ -21,7 +21,7 @@
     "babel-loader": "^8.0.6",
     "clean-webpack-plugin": "^3.0.0",
     "edit-json-file": "^1.4.1",
-    "hecs": "^0.16.0",
+    "hecs": "^0.17.0",
     "jest": "^26.1.0",
     "terser-webpack-plugin": "^4.1.0",
     "webpack": "^4.41.5",
