@@ -70,6 +70,9 @@ export class Presentation {
     this.camera.aspect = this.size.width / this.size.height
     this.camera.updateProjectionMatrix()
     this.renderer.setSize(this.size.width, this.size.height)
+    if (this.viewport) {
+      this.renderer.render(this.scene, this.camera)
+    }
   }
 
   takePhoto(width, height) {
