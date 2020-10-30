@@ -23,30 +23,35 @@ export class World extends EventEmitter {
         name: 'root',
         ...options,
       })
-    )
-    this.archetypes.init()
-    this.systems.init()
+    ).then(() => {
+      this.archetypes.init()
+      this.systems.init()
+      this.emit('ready')
+    })
   }
 
-  registerPlugin(plugin) {
+  async registerPlugin(plugin) {
     if (this.plugins.has(plugin)) {
       console.warn(`hecs: already registered plugin '${plugin.name}'`)
       return
     }
     this.plugins.set(plugin, true)
-    plugin.plugins.forEach(plugin => {
-      this.registerPlugin(plugin)
-    })
+
+    // Async forEach, adhering strictly to sequence
+    await plugin.plugins.reduce(async (memo, plugin) => {
+      await memo
+      await this.registerPlugin(plugin)
+    }, undefined)
+
     plugin.systems.forEach(System => {
       this.systems.register(System)
     })
     plugin.components.forEach(Component => {
       this.components.register(Component)
     })
-    if (plugin.decorate) {
-      plugin.decorate(this)
-    }
-    console.log(`hecs: registered plugin '${plugin.name}'`)
+    return Promise.resolve(plugin.decorate(this)).then(() => {
+      console.log(`hecs: registered plugin '${plugin.name}'`)
+    })
   }
 
   update(delta) {
