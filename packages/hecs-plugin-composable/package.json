@@ -1,0 +1,56 @@
+{
+  "name": "hecs-plugin-composable",
+  "version": "0.17.0",
+  "main": "dist/hecs-plugin-composable.js",
+  "scripts": {
+    "start": "webpack --watch",
+    "test": "jest",
+    "build": "NODE_ENV=production webpack",
+    "version": "node scripts/update-peers",
+    "prepublishOnly": "yarn build"
+  },
+  "peerDependencies": {
+    "hecs": "^0.17.0",
+    "hecs-plugin-core": "^0.17.0"
+  },
+  "dependencies": {
+    "simplex-noise": "^2.4.0"
+  },
+  "devDependencies": {
+    "@babel/core": "^7.12.3",
+    "@babel/plugin-proposal-class-properties": "^7.12.1",
+    "@babel/plugin-transform-runtime": "^7.12.1",
+    "@babel/preset-env": "^7.12.1",
+    "babel-jest": "^26.1.0",
+    "babel-loader": "^8.0.6",
+    "clean-webpack-plugin": "^3.0.0",
+    "edit-json-file": "^1.4.1",
+    "hecs": "^0.17.0",
+    "hecs-plugin-core": "^0.17.0",
+    "jest": "^26.1.0",
+    "terser-webpack-plugin": "^4.1.0",
+    "webpack": "^4.41.5",
+    "webpack-cli": "^3.3.10"
+  },
+  "author": {
+    "name": "Duane Johnson",
+    "email": "duane.johnson@gmail.com"
+  },
+  "description": "A plugin for hecs that provides composable transforms and various composition functions",
+  "keywords": [
+    "ECS",
+    "plugin",
+    "transform",
+    "entity",
+    "component",
+    "system"
+  ],
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/gohyperr/hecs.git",
+    "directory": "packages/hecs-plugin-composable"
+  },
+  "homepage": "https://github.com/gohyperr/hecs/tree/master/packages/hecs-plugin-composable",
+  "bugs": "https://github.com/gohyperr/hecs/issues",
+  "license": "MIT"
+}
