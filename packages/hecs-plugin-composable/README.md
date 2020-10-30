@@ -1,10 +1,10 @@
-# `hecs-plugin-composable`
+# Hecs Plugin Composable
 
 A plugin for Hecs that adds the ability to compose multiple positional, rotational, and scale transformations on the same entity.
 
 While this type of composition can also be achieved by creating parent/child entities for each type of transformation, this method is simpler and about 30% faster.
 
-Example use case: Suppose you make a game where coins bounce up and down as well as spin as they bounce. These visual transformations don't affect the underlying physics of the coin--it's just for show. `hecs-plugin-composable` can be used to add OscillatePosition and OscillateRotation components to achieve the desired effect.
+**Example use case:** Suppose you make a game where coins bounce up and down as well as spin as they bounce. These visual transformations don't affect the underlying physics of the coin--it's just for show. `hecs-plugin-composable` can be used to add OscillatePosition and OscillateRotation components to achieve the desired effect.
 
 ## Usage
 
