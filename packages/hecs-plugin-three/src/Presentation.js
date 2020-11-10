@@ -1,4 +1,7 @@
 import * as THREE from 'three'
+import { EffectComposer } from 'three/examples/jsm/postprocessing/EffectComposer'
+import { RenderPass } from 'three/examples/jsm/postprocessing/RenderPass'
+
 import { Loader } from './Loader'
 import { Capture } from './Capture'
 
@@ -10,10 +13,14 @@ export class Presentation {
     this.world = world
     this.viewport = null
     this.size = { width: 1, height: 1 }
-    this.scene = options.scene || this.createScene()
     this.object3ds = []
+    this.scene = options.scene || this.createScene()
     this.renderer = options.renderer || this.createRenderer()
     this.camera = options.camera || this.createCamera()
+    this.postprocess = !!options.postprocess
+    if (this.postprocess) {
+      this.composer = options.composer || this.createComposer()
+    }
     this.resizeObserver = new ResizeObserver(this.onResize.bind(this))
     this.capture = new Capture(this)
     if (!loader) loader = new Loader()
@@ -60,14 +67,27 @@ export class Presentation {
     this.size.height = this.viewport?.offsetHeight || 1
   }
 
+  render() {
+    if (this.viewport) {
+      if (this.postprocess) {
+        this.composer.render()
+      } else {
+        this.renderer.render(this.scene, this.camera)
+      }
+    }
+  }
+
   resize() {
     this.updateSize()
     this.camera.aspect = this.size.width / this.size.height
     this.camera.updateProjectionMatrix()
     this.renderer.setSize(this.size.width, this.size.height)
-    if (this.viewport) {
-      this.renderer.render(this.scene, this.camera)
+    if (this.postprocess) {
+      this.composer.setSize(this.size.width, this.size.height)
     }
+
+    // Render immediately after resize to avoid flicker
+    this.render()
   }
 
   takePhoto(width, height) {
@@ -128,5 +148,15 @@ export class Presentation {
       0.1,
       1000
     )
+  }
+
+  createComposer() {
+    const composer = new EffectComposer(this.renderer)
+
+    const renderPass = new RenderPass(this.scene, this.camera)
+
+    composer.addPass(renderPass)
+
+    return composer
   }
 }
