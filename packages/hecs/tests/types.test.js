@@ -28,6 +28,17 @@ class ConfiguredTypes extends Component {
   }
 }
 
+class FunctionalTypeDefaults extends Component {
+  static props = {
+    seed: {
+      type: NumberType,
+      default() {
+        return Math.random()
+      },
+    },
+  }
+}
+
 describe('types', () => {
   const world = new World({
     components: [BaseTypes, ConfiguredTypes],
@@ -127,5 +138,12 @@ describe('types', () => {
       expect(component.json.bar).toBe('baz')
       entity.remove(ConfiguredTypes)
     })
+  })
+
+  describe('functional type defaults', () => {
+    entity.add(FunctionalTypeDefaults)
+    const component = entity.get(FunctionalTypeDefaults)
+    expect(typeof component.seed).toBe('number')
+    entity.remove(FunctionalTypeDefaults)
   })
 })

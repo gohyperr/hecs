@@ -18,7 +18,14 @@ export class Component {
         this.constructor.props[key] = prop
       }
 
-      this[key] = prop.type.initial(value === undefined ? prop.default : value)
+      const initialValue =
+        value === undefined
+          ? typeof prop.default === 'function'
+            ? prop.default()
+            : prop.default
+          : value
+
+      this[key] = prop.type.initial(initialValue)
       this.props.push(prop)
     }
   }
