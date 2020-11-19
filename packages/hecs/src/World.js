@@ -35,7 +35,7 @@ export class World extends EventEmitter {
     }
     this.plugins.set(plugin, true)
     plugin.plugins.forEach(plugin => {
-      this.registerPlugin(plugin)
+      this.registerPlugin(typeof plugin === 'function' ? plugin() : plugin)
     })
     plugin.systems.forEach(System => {
       this.systems.register(System)
