@@ -29,13 +29,16 @@ export class World extends EventEmitter {
   }
 
   registerPlugin(plugin) {
-    if (this.plugins.has(plugin)) {
+    if (typeof plugin === 'function') {
+      plugin = plugin()
+    }
+    if (this.plugins.has(plugin.name)) {
       // console.warn(`hecs: already registered plugin '${plugin.name}'`)
       return
     }
-    this.plugins.set(plugin, true)
+    this.plugins.set(plugin.name, true)
     plugin.plugins.forEach(plugin => {
-      this.registerPlugin(typeof plugin === 'function' ? plugin() : plugin)
+      this.registerPlugin(plugin)
     })
     plugin.systems.forEach(System => {
       this.systems.register(System)
