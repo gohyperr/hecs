@@ -4,7 +4,7 @@ import { WorldTransform } from 'hecs-plugin-core'
 import { Object3D } from '../components'
 
 export class Object3DSystem extends System {
-  order = Groups.Initialization
+  order = Groups.Presentation - 10
 
   static queries = {
     new: [WorldTransform, Not(Object3D)],
