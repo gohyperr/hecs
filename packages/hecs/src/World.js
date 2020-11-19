@@ -30,7 +30,7 @@ export class World extends EventEmitter {
 
   registerPlugin(plugin) {
     if (this.plugins.has(plugin)) {
-      console.warn(`hecs: already registered plugin '${plugin.name}'`)
+      // console.warn(`hecs: already registered plugin '${plugin.name}'`)
       return
     }
     this.plugins.set(plugin, true)
