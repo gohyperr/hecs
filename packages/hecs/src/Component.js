@@ -20,8 +20,8 @@ export class Component {
 
       const initialValue =
         value === undefined
-          ? typeof prop.default === 'function'
-            ? prop.default()
+          ? prop.defaultFn
+            ? prop.defaultFn()
             : prop.default
           : value
 

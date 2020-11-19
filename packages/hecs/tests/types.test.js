@@ -32,7 +32,7 @@ class FunctionalTypeDefaults extends Component {
   static props = {
     seed: {
       type: NumberType,
-      default() {
+      defaultFn() {
         return Math.random()
       },
     },
