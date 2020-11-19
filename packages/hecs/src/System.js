@@ -7,8 +7,12 @@ export class System {
     this.world = world
     this.queries = {}
     this.active = true
-    for (const queryName in this.constructor.queries) {
-      const Components = this.constructor.queries[queryName]
+    this.createQueries(this.constructor.queries)
+  }
+
+  createQueries(queries) {
+    for (const queryName in queries) {
+      const Components = queries[queryName]
       this.queries[queryName] = this.world.queries.create(Components)
     }
   }
